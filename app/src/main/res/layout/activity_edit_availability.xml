@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    tools:context=".EditAvailability">
+
+
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/mainAppçColor"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/back"
+            android:text=""
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/Education"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Edit Availability"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            />
+
+        <TextView
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/white"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <CheckBox
+            android:id="@+id/checkBoxMon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:buttonTint="@color/black"
+            android:checked="false"
+            android:text="Monday"
+            android:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/ckbxMonMor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/black"
+                android:checked="false"
+                android:text="Morning"
+                android:textColor="@color/black" />
+
+            <CheckBox
+                android:id="@+id/ckbxMonEve"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/black"
+                android:text="Evening"
+                android:textColor="@color/black" />
+
+            <CheckBox
+                android:id="@+id/chbxMonN9t"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/black"
+                android:text="Night"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/headingBack"
+            android:orientation="vertical"></View>
+
+
+            <CheckBox
+                android:id="@+id/checkboxTue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:buttonTint="@color/black"
+                android:text="Tuesday"
+                android:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/chbxTueMor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/black"
+                android:text="Morning"
+                android:textColor="@color/black" />
+
+            <CheckBox
+                android:id="@+id/chbxTueEve"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/black"
+                android:text="Evening"
+                android:textColor="@color/black" />
+
+            <CheckBox
+                android:id="@+id/chbxTueN9t"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/black"
+                android:text="Night"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/headingBack"
+            android:orientation="vertical"></View>
+
+
+        <CheckBox
+                android:id="@+id/checkboxWed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:buttonTint="@color/black"
+                android:text="Wednessday"
+                android:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/chbxWedMor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/black"
+                android:text="Morning"
+                android:textColor="@color/black" />
+
+            <CheckBox
+                android:id="@+id/chbxWedEve"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/black"
+                android:text="Evening"
+                android:textColor="@color/black" />
+
+            <CheckBox
+                android:id="@+id/chbxWedN9t"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/black"
+                android:text="Night"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/headingBack"
+            android:orientation="vertical"></View>
+
+
+        <CheckBox
+                android:id="@+id/checkBoxThurs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:buttonTint="@color/black"
+                android:text="Thursday"
+                android:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/ckbxThursMOr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/black"
+                android:text="Morning"
+                android:textColor="@color/black" />
+
+            <CheckBox
+                android:id="@+id/ckbxThursEve"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/black"
+                android:text="Evening"
+                android:textColor="@color/black" />
+
+            <CheckBox
+                android:id="@+id/chbxThursN9t"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/black"
+                android:text="Night"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/headingBack"
+            android:orientation="vertical"></View>
+
+        <CheckBox
+                android:id="@+id/checkboxFri"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:buttonTint="@color/black"
+                android:text="Friday"
+                android:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/chbxFriMor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/black"
+                android:text="Morning"
+                android:textColor="@color/black" />
+
+            <CheckBox
+                android:id="@+id/chbxFriEve"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/black"
+                android:text="Evening"
+                android:textColor="@color/black" />
+
+            <CheckBox
+                android:id="@+id/chbxFriN9t"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/black"
+                android:text="Night"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/headingBack"
+            android:orientation="vertical"></View>
+
+        <CheckBox
+                android:id="@+id/checkboxSat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:buttonTint="@color/black"
+                android:text="Saturday"
+                android:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/chbxSatMor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/black"
+                android:text="Morning"
+                android:textColor="@color/black" />
+
+            <CheckBox
+                android:id="@+id/chbxSatEve"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/black"
+                android:text="Evening"
+                android:textColor="@color/black" />
+
+            <CheckBox
+                android:id="@+id/chbxSatN9t"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/black"
+                android:text="Night"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/headingBack"
+            android:orientation="vertical"></View>
+
+
+        <CheckBox
+                android:id="@+id/checkboxSun"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:buttonTint="@color/black"
+                android:text="Sunday"
+                android:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/chbxSunMor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/black"
+                android:text="Morning"
+                android:textColor="@color/black" />
+
+            <CheckBox
+                android:id="@+id/chbxSunEve"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/black"
+                android:text="Evening"
+                android:textColor="@color/black" />
+
+            <CheckBox
+                android:id="@+id/chbxSunN9t"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/black"
+                android:text="Night"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/headingBack"
+            android:orientation="vertical"></View>
+
+
+
+
+    </LinearLayout>
+</LinearLayout>

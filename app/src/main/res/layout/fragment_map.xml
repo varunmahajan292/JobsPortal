@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/home"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentBottom="false"
+    android:layout_gravity="center_vertical"
+    android:orientation="vertical"
+    tools:context=".ui.map.MapFragment">
+
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <fragment
+
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            ></fragment>
+
+
+        <LinearLayout
+            android:background="@color/white"
+            android:layout_below="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_marginTop="0dp"
+            android:id= "@+id/btii"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="my location"
+                android:background="@drawable/searchbackground"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/btn_myLocation"
+
+                >
+
+
+            </Button>
+        </LinearLayout>
+
+        <SeekBar
+
+            android:id="@+id/seekRadius"
+            android:layout_width="340dp"
+            android:layout_height="10dp"
+            android:max="100"
+            android:progress="0"
+            android:layout_marginLeft="-130dp"
+            android:layout_marginBottom="220dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="2dp"
+            android:layout_above="@+id/layo"
+            android:layout_alignLeft="@id/map"
+            android:rotation="270"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/searchbackground"
+            android:gravity="center"
+            android:orientation="vertical"
+            />
+
+
+        <TextView
+            android:id="@+id/textSeek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:rotation="270"
+            android:layout_marginBottom="260dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:textColor="@android:color/black"
+            android:background="@drawable/searchbackground"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:text="0 KM" />
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <SearchView
+                android:id="@+id/searchViewMap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginBottom="0dp"
+                android:background="@drawable/searchbackground"
+                android:elevation="5dp"
+                android:iconifiedByDefault="false"
+                android:queryHint="Choose your Location"
+
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/layo"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_alignRight="@+id/map"
+            android:layout_alignBottom="@id/map"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/floatingActionButton"
+                android:background="@color/white"
+                android:layout_width="wrap_content"
+                android:text="Show List"
+                android:gravity="center"
+                android:padding="8dp"
+                android:layout_height="wrap_content"
+
+
+                android:layout_margin="5dp"
+                app:srcCompat="@android:drawable/ic_input_add"
+
+                />
+
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
+
+
+
+
+

@@ -1,0 +1,93 @@
+{
+  "project_info": {
+    "project_number": "313501571213",
+    "firebase_url": "https://infinityjobs-a6a29.firebaseio.com",
+    "project_id": "infinityjobs-a6a29",
+    "storage_bucket": "infinityjobs-a6a29.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:313501571213:android:820be44349f44b071eaac4",
+        "android_client_info": {
+          "package_name": "com.example.infinityjobportal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "313501571213-kiber80d3lj5pihhnbcrcd0rv90vdmip.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.infinityjobportal",
+            "certificate_hash": "a050e9420bfb7827481c46cf4b2617d848909e38"
+          }
+        },
+        {
+          "client_id": "313501571213-tdss09vqeq0f48i10a52gtjkp1642h7e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApLotu2fSNcvtQ3zM-w5rkggUOkI_A2kw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "313501571213-tdss09vqeq0f48i10a52gtjkp1642h7e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:313501571213:android:66e8763ce461aac91eaac4",
+        "android_client_info": {
+          "package_name": "com.example.infinityjobs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "313501571213-ht5e6j61cjd8d9pi7v0688aarbht2c2b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.infinityjobs",
+            "certificate_hash": "eb49d314b702bcc6ffafad3a39445164cf3b028c"
+          }
+        },
+        {
+          "client_id": "313501571213-dj5m2colb6ddt8k205g7bj1hde5bl3vi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.infinityjobs",
+            "certificate_hash": "a050e9420bfb7827481c46cf4b2617d848909e38"
+          }
+        },
+        {
+          "client_id": "313501571213-tdss09vqeq0f48i10a52gtjkp1642h7e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApLotu2fSNcvtQ3zM-w5rkggUOkI_A2kw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "313501571213-tdss09vqeq0f48i10a52gtjkp1642h7e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

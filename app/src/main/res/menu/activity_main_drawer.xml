@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/homeFragment"
+            android:icon="@drawable/home_black"
+            android:title="Home" />
+        <item
+            android:id="@+id/myMapFragment"
+            android:icon="@drawable/location"
+            android:title="Map" />
+
+        <item
+            android:id="@+id/myJobsFragment"
+            android:icon="@drawable/work_black"
+            android:title="My Jobs"></item>
+
+
+        <item
+            android:id="@+id/myProfileFragment"
+            android:icon="@drawable/user"
+            android:title="My Profile"></item>
+
+
+        <item android:title="Employers">
+            <menu>
+
+                <item
+                    android:id="@+id/postJobFragment"
+                    android:icon="@drawable/post_add_black"
+                    android:title="Post a Job" />
+                <item
+                    android:id="@+id/postedJobsFragment"
+                    android:icon="@drawable/list_alt_black"
+                    android:title="Posted Jobs" />
+                <item
+                    android:id="@+id/myCompaniesFragment"
+                    android:icon="@drawable/list_alt_black"
+                    android:title="My Companies" />
+
+            </menu>
+        </item>
+
+
+
+
+
+
+        <item android:title="Others">
+            <menu>
+                <item
+                    android:id="@+id/queriesFragment"
+                    android:icon="@drawable/arrow_circle_down_black"
+                    android:title="Queries" />
+                <item
+                    android:id="@+id/aboutUsFragment"
+                    android:icon="@drawable/info_black"
+                    android:title="About Us" />
+
+            </menu>
+
+        </item>
+
+    </group>
+</menu>

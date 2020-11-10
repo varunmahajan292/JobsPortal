@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/mainAppçColor"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/back"
+            android:text=""
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/Education"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Edit Company Profile"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:text="Save"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <ScrollView
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <FrameLayout
+                android:id="@+id/ivCompanyLogo"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/ivLogo"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/company_thumb" />
+
+
+            </FrameLayout>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/tvCompanyName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="Company Name"
+                android:inputType="text"
+                android:paddingLeft="10dp"
+                android:paddingBottom="15dp"
+                android:fontFamily="@font/robotoregular"
+                android:textColorHint="#57454545"
+                app:layout_constraintTop_toBottomOf="@+id/ivCompanyLogo" />
+
+            <Spinner
+                android:id="@+id/tvIndustry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:entries="@array/industries"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCompanyName" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/tvLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:hint="Location"
+                android:inputType="text"
+                android:textSize="18sp"
+                android:paddingLeft="10dp"
+                android:paddingBottom="15dp"
+                android:fontFamily="@font/robotoregular"
+                android:textColorHint="#57454545"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvIndustry" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/tvLine1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="Address Line 1"
+                android:inputType="textPostalAddress"
+                android:paddingLeft="10dp"
+                android:paddingBottom="15dp"
+                android:fontFamily="@font/robotoregular"
+                android:textColorHint="#57454545"
+                app:layout_constraintTop_toBottomOf="@+id/tvLocation" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/tvLine2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="Address Line 2"
+                android:inputType="textPostalAddress"
+                android:paddingLeft="10dp"
+                android:paddingBottom="15dp"
+                android:fontFamily="@font/robotoregular"
+                android:textColorHint="#57454545"
+                app:layout_constraintTop_toBottomOf="@+id/tvLine1" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/tvCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="City"
+                android:inputType="textPostalAddress"
+                android:textColorHint="@android:color/darker_gray"
+                app:layout_constraintTop_toBottomOf="@+id/tvLine2" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/tvState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="State"
+                android:inputType="textPostalAddress"
+                android:paddingLeft="10dp"
+                android:paddingBottom="15dp"
+                android:fontFamily="@font/robotoregular"
+                android:textColorHint="#57454545"
+                app:layout_constraintTop_toBottomOf="@+id/tvCity" />
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/tvCountry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="Country"
+                android:inputType="textPostalAddress"
+                android:textColorHint="@android:color/darker_gray"
+                app:layout_constraintTop_toBottomOf="@+id/tvState" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/tvAbout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="Tag Line"
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                android:paddingLeft="10dp"
+                android:paddingBottom="15dp"
+                android:fontFamily="@font/robotoregular"
+                android:textColorHint="#57454545"
+                app:layout_constraintTop_toBottomOf="@+id/tvCountry" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/tvDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="Description"
+                android:inputType="textMultiLine"
+                android:minLines="6"
+                android:paddingLeft="10dp"
+                android:paddingBottom="15dp"
+                android:fontFamily="@font/robotoregular"
+                android:textColorHint="#57454545"
+                app:layout_constraintTop_toBottomOf="@+id/tvAbout" />
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/tvWeb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="Website"
+                android:inputType="text"
+                android:textColorHint="@android:color/darker_gray"
+                app:layout_constraintTop_toBottomOf="@+id/tvDesc" />
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/tvEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:paddingLeft="10dp"
+                android:paddingBottom="15dp"
+                android:fontFamily="@font/robotoregular"
+                android:textColorHint="#57454545"
+                app:layout_constraintTop_toBottomOf="@+id/tvWeb" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/tvContact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="Contact"
+                android:inputType="phone"
+                android:paddingLeft="10dp"
+                android:paddingBottom="15dp"
+                android:fontFamily="@font/robotoregular"
+                android:textColorHint="#57454545"
+                app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:text="Update"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvContact" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

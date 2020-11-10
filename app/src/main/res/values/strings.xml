@@ -1,0 +1,135 @@
+<resources>
+    <string name="app_name">Infinity Jobs</string>
+    <string name="title_activity_admin_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+
+    <string-array name="emp_spinnerItems">
+        <item>Choose employment type</item>
+        <item>Full Time</item>
+        <item>Part Time</item>
+        <item>Self-employed</item>
+        <item>Freelance</item>
+        <item>Internship</item>
+        <item>Trainee</item>
+    </string-array>
+    <string-array name="country_spinnerItems">
+        <item>Choose country</item>
+        <item>Canada</item>
+        <item>India</item>
+        <item>Australia</item>
+    </string-array>
+    <string name="title_activity_my_jobs">MyJobsActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="category">
+        <item>Select the job category</item>
+        <item>Sales, Retail and Customer Support</item>
+        <item>Technology</item>
+        <item>Manufacturing</item>
+        <item>Supply Chain and logistics</item>
+        <item>Food and Beverages</item>
+        <item>Finance and accounting</item>
+        <item>Healthcare</item>
+        <item>Construction</item>
+        <item>Education</item>
+        <item>Media, Art and Design</item>
+        <item>Engineering</item>
+        <item>Others</item>
+    </string-array>
+    <string-array name="categoryforfilter">
+        <item>Any</item>
+        <item>Sales, Retail and Customer Support</item>
+        <item>Technology</item>
+        <item>Manufacturing</item>
+        <item>Supply Chain and logistics</item>
+        <item>Food and Beverages</item>
+        <item>Finance and accounting</item>
+        <item>Healthcare</item>
+        <item>Construction</item>
+        <item>Education</item>
+        <item>Media, Art and Design</item>
+        <item>Engineering</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="provinceForFilter">
+        <item>Any</item>
+        <item>Alberta</item>
+        <item>British Columbia</item>
+        <item>Manitoba</item>
+        <item>New Brunswick</item>
+        <item>Nova Scotia</item>
+        <item>Newfoundland and Labrador</item>
+        <item>Ontario</item>
+        <item>Prince Edward Island</item>
+        <item>Quebec</item>
+        <item>Saskatchewan</item>
+    </string-array>
+    <string-array name="provinceForPost">
+        <item>Alberta</item>
+        <item>British Columbia</item>
+        <item>Manitoba</item>
+        <item>New Brunswick</item>
+        <item>Nova Scotia</item>
+        <item>Newfoundland and Labrador</item>
+        <item>Ontario</item>
+        <item>Prince Edward Island</item>
+        <item>Quebec</item>
+        <item>Saskatchewan</item>
+    </string-array>
+
+    <string-array name="jobDaysRequirement">
+        <item>Select the availability requirement</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+    <string-array name="cities">
+        <item>City</item>
+        <item>Toronto</item>
+        <item>Mississauga</item>
+        <item>Montreal</item>
+        <item>Calgary</item>
+        <item>Edmonton</item>
+        <item>Ottawa</item>
+        <item>Winnipeg</item>
+        <item>Hamilton</item>
+        <item>Others</item>
+    </string-array>
+    <string-array name="industries">
+        <item>Information Technology</item>
+        <item>Computer Hardware</item>
+        <item>Software Development</item>
+        <item>Digital Marketing</item>
+    </string-array>
+    <string-array name="province">
+        <item>Province</item>
+        <item>ON</item>
+        <item>QC</item>
+        <item>AB</item>
+        <item>MB</item>
+        <item>Others</item>
+    </string-array>
+</resources>

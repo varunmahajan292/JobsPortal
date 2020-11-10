@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.infinityjobportal.admin.ui.user.UserFragment"
+        android:label="Users"
+        tools:layout="@layout/admin_fragment_user" />
+
+    <fragment
+        android:id="@+id/navigation_queries"
+        android:name="com.example.infinityjobportal.admin.ui.queries.QueriesFragment"
+        android:label="Queries"
+        tools:layout="@layout/admin_fragment_queries" />
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.example.infinityjobportal.admin.ui.settings.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/admin_fragment_settings" />
+
+    <fragment
+        android:id="@+id/navigation_jobs"
+        android:name="com.example.infinityjobportal.admin.ui.jobs.JobsFragment"
+        android:label="Jobs"
+        tools:layout="@layout/admin_fragment_jobs" />
+</navigation>

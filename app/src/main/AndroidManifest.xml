@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.infinityjobportal">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".ViewProfile"></activity>
+        <activity android:name=".ui.postJob.EditActiveJobs" />
+        <activity android:name=".ui.postedJobs.closedJobs.JobDetailsClosedJobs" />
+        <activity
+            android:name=".ui.postedJobs.activeJobs.JobDetailsActiveJobs"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity android:name=".ui.postedJobs.activeJobs.ViewApplicationActiveJobs"  android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Successful" />
+        <activity android:name=".UpdateCompanyPicActivity" />
+        <activity
+            android:name=".UploadResume"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity
+            android:name=".JobDetails"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity
+            android:name=".Filter"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity android:name=".Search" />
+        <activity android:name=".interests" />
+        <activity
+            android:name=".CompanyProfileActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity android:name=".AddCompanyActivity" />
+        <activity
+            android:name=".EditCompanyActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity android:name=".MapFilterData" />
+        <activity
+            android:name=".SearchViewMap"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity android:name=".test" />
+        <activity
+            android:name=".ClientChangePassword"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity
+            android:name=".UpdateContactSection"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity
+            android:name=".UpdateAbout"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity
+            android:name=".EditNameSection"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity
+            android:name=".UpdateUserPic"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity
+            android:name=".admin.ChangePassword"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity
+            android:name=".admin.ViewQuery"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity android:name=".AddNewEducation" />
+        <activity android:name=".EditEducation" />
+        <activity android:name=".MainEducation" />
+        <activity android:name=".Update_Exp" />
+        <activity android:name=".Search_jobs" />
+        <activity android:name=".Jobs_search" />
+        <activity android:name=".Applied_jobs" />
+        <activity android:name=".SavedJobsActivity" />
+        <activity
+            android:name=".MyJobDetails"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity
+            android:name=".AdminLogin"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity android:name=".forget_password" />
+        <activity android:name=".ClientSignUp" />
+        <activity android:name=".ClientLogin" />
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".admin.AdminMainActivity"
+            android:label="@string/title_activity_admin_main" />
+        <activity
+            android:name=".Splash"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ListOfExperienceActiviy"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity
+            android:name=".EditAvailability"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity
+            android:name=".add_exp"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+    </application>
+
+</manifest>
