@@ -72,7 +72,7 @@
         android:background="@drawable/button_pressed"
         android:fontFamily="@font/robotoregular"
         android:padding="10dp"
-        android:text="Complete Job"
+        android:text="Make Active"
         android:textAllCaps="false"
         android:textColor="#ffffff"
         android:textSize="15dp"

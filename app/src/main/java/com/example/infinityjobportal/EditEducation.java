@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +33,7 @@ import static java.util.Calendar.getInstance;
 public class EditEducation extends AppCompatActivity implements OnClickListener {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private TextView textstart,textend;
-    private Button back, update, delete;
+    private ImageView back, update, delete;
 
     private EditText school1, degree1, fieldOfStudy1, startdate, enddate, grades, extraAct, discription1;
     CollectionReference reference = db.collection("Education");
@@ -42,7 +43,7 @@ public class EditEducation extends AppCompatActivity implements OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_education);
         pojoAddNewEducation = (com.example.infinityjobportal.pojoAddNewEducation) getIntent().getSerializableExtra("Education");
-        back = findViewById(R.id.button_back);
+        back = findViewById(R.id.back);
         school1=findViewById(R.id.school);
         degree1 = findViewById(R.id.Degree);
         fieldOfStudy1 = findViewById(R.id.studyField);
@@ -62,7 +63,7 @@ public class EditEducation extends AppCompatActivity implements OnClickListener 
         grades.setText(pojoAddNewEducation.getGrade());
         extraAct.setText(pojoAddNewEducation.getExtraActs());
         discription1.setText(pojoAddNewEducation.getdescription());
-        findViewById(R.id.button_update).setOnClickListener(this);
+        findViewById(R.id.save).setOnClickListener(this);
         findViewById(R.id.delete).setOnClickListener(this);
 
         textstart.setOnClickListener(new OnClickListener() {
@@ -131,7 +132,7 @@ public class EditEducation extends AppCompatActivity implements OnClickListener 
 back.setOnClickListener(new OnClickListener() {
     @Override
     public void onClick(View view) {
-        startActivity(new Intent(EditEducation.this, MainEducation.class));
+       finish();
 
     }
 });
@@ -243,7 +244,7 @@ back.setOnClickListener(new OnClickListener() {
                         public void onSuccess(Void oid) {
                             Toast.makeText(EditEducation.this, "Data Updated Successfully", Toast.LENGTH_SHORT).show();
                             finish();
-                            startActivity(new Intent(EditEducation.this, MainEducation.class));
+
                         }
                     });
 
@@ -260,7 +261,7 @@ back.setOnClickListener(new OnClickListener() {
                         if (task.isSuccessful()) {
                             Toast.makeText(EditEducation.this, "Education deleted", Toast.LENGTH_LONG).show();
                             finish();
-                            startActivity(new Intent(EditEducation.this, MainEducation.class));
+
                         }
                     }
                 });
@@ -272,12 +273,11 @@ back.setOnClickListener(new OnClickListener() {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.button_update:
+            case R.id.save:
                 UpdateEducation();
                 break;
+
             case R.id.delete:
-
-
                 AlertDialog.Builder builder = new AlertDialog.Builder(EditEducation.this);
                 builder.setTitle("Are you sure about this?");
                 builder.setMessage("Deletion is permanent...");

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="5dp"
     android:background="@color/white"
     android:gravity="center"
     android:orientation="vertical"
@@ -12,49 +11,51 @@
 
 
     <LinearLayout
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/mainSecondaryColor"
+        android:layout_alignParentTop="true"
+        android:background="@color/mainAppçColor"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button_back"
+        <ImageView
+            android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/mainSecondaryColor"
-            android:text="X"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/Add_education"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            android:text="Add Education"
+            android:layout_margin="10dp"
+            android:background="@drawable/back"
+            android:text=""
             android:textSize="20sp"
             android:textStyle="bold" />
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/Education"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Add Education"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            />
 
-        <Button
-            android:id="@+id/button_save"
+        <TextView
+            android:id="@+id/save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/mainSecondaryColor"
-            android:text="Save" />
-
+            android:text="Save"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/white"
+            />
     </LinearLayout>
+
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="5dp">
+        android:layout_margin="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"

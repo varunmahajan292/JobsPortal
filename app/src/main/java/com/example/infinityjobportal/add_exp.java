@@ -2,10 +2,12 @@ package com.example.infinityjobportal;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -48,7 +50,7 @@ import java.util.Map;
 
 public class add_exp extends AppCompatActivity {
  EditText et_designation,et_institute,start_date,end_date;
- ImageView img;
+ ImageView img, back;
 
  Button pickdate,spickdate;
     int mYear, mMonth, mDay;
@@ -83,6 +85,7 @@ public class add_exp extends AppCompatActivity {
         faltu = findViewById(R.id.faltu);
         submit = findViewById(R.id.submit);
         img = findViewById(R.id.img);
+        back = findViewById(R.id.back);
         db = FirebaseFirestore.getInstance();
         mAuth=FirebaseAuth.getInstance();
 
@@ -281,9 +284,41 @@ public class add_exp extends AppCompatActivity {
                 data.put("startdate", start_date.getText().toString());
                 data.put("enddate", end_date.getText().toString());
                 data.put("userId", String.valueOf(mAuth.getCurrentUser().getEmail()));
+
                 DocumentReference documentReference = db.collection("LOE").document();
                 data.put("id", String.valueOf(documentReference.getId()));
-                documentReference.set(data);
+                documentReference.set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(add_exp.this);
+                        builder.setMessage("Experience Added.")
+                                .setCancelable(false)
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        finish();
+
+                                    }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(add_exp.this);
+                        builder.setMessage("Operation Failed. Try Again...")
+                                .setCancelable(false)
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+
+                                    }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    }
+                });
+
+
                 String designation =et_designation.getText().toString();
                 String insitute =et_institute.getText().toString();
                 String startdate =start_date.getText().toString();
@@ -317,9 +352,9 @@ public class add_exp extends AppCompatActivity {
                     end_date.setError("Invalid");
                 }
                 else {
-                    Toast.makeText(getApplicationContext(), "LOE added ", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getApplicationContext(), ListOfExperienceActiviy.class);
-                    startActivity(i);
+//                    Toast.makeText(getApplicationContext(), "LOE added ", Toast.LENGTH_SHORT).show();
+//                    Intent i = new Intent(getApplicationContext(), ListOfExperienceActiviy.class);
+//                    startActivity(i);
                 }
 
 
@@ -327,6 +362,12 @@ public class add_exp extends AppCompatActivity {
         });
 
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
 
         }

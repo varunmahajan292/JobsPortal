@@ -10,45 +10,47 @@
     tools:context=".EditEducation">
 
 
+
+
     <LinearLayout
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_alignParentTop="true"
         android:background="@color/mainAppçColor"
-        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
-        <Button
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:id="@+id/button_back"
+        <ImageView
+            android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/mainAppçColor"
-            android:text="X"/>
-
-        <TextView
-            android:id="@+id/Add_education"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="15dp"
-            android:text="Edit Education"
+            android:layout_margin="10dp"
+            android:background="@drawable/back"
+            android:text=""
             android:textSize="20sp"
             android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/button_update"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <TextView
             android:layout_weight="1"
-            android:layout_marginTop="5dp"
-            android:background="@color/mainSecondaryColor"
-            android:text="Update"
+            android:id="@+id/Education"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Edit Education"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
             />
 
+        <TextView
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/white"
+            />
     </LinearLayout>
 
     <ScrollView
@@ -67,14 +69,32 @@
                 android:layout_height="97dp"
                 android:orientation="vertical"
                 >
-                <TextView
-                    android:id="@+id/t1"
-                    android:layout_width="wrap_content"
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:text="School"
-                    android:textColor="#000000"
-                    android:textSize="20sp" />
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/t1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="School"
+                        android:layout_weight="1"
+                        android:textColor="#000000"
+                        android:textSize="20sp" />
+
+                    <ImageView
+                        android:id="@+id/delete"
+                        android:paddingTop="10dp"
+                        android:gravity="right"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/delete_blue"
+                        />
+
+                </LinearLayout>
 
 
                 <LinearLayout
@@ -83,14 +103,6 @@
                     android:orientation="horizontal"
                     android:weightSum="5"
                     >
-                    <ImageView
-                        android:backgroundTint="@color/black"
-                        android:id="@+id/imageView"
-                        android:layout_width="100dp"
-                        android:layout_height="40dp"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1.5"
-                        android:background="@drawable/schoolicon" />
 
                     <EditText
                         android:id="@+id/school"
@@ -319,15 +331,6 @@
             </androidx.cardview.widget.CardView>
 
 
-            <Button
-
-                android:id="@+id/delete"
-                android:gravity="center"
-                android:background="@drawable/subjectrect"
-                android:layout_gravity="center_horizontal"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:text="Delete" />
 
         </LinearLayout>
 

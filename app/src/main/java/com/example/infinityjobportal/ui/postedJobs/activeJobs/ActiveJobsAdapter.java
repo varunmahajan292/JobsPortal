@@ -8,20 +8,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.infinityjobportal.GlobalStorage;
 import com.example.infinityjobportal.R;
 import com.example.infinityjobportal.model.PostJobPojo;
 import com.example.infinityjobportal.model.User;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ActiveJobsAdapter extends RecyclerView.Adapter<ActiveJobsAdapter.ActiveJobsViewHolder> {
     private static final String TAG = "ActiveJobsAdapter";
+ public int count;
+    ArrayList<String > l = new ArrayList<String>();
 
 
     private Context context;
@@ -45,10 +53,10 @@ public class ActiveJobsAdapter extends RecyclerView.Adapter<ActiveJobsAdapter.Ac
 
     @Override
     public void onBindViewHolder(@NonNull ActiveJobsViewHolder holder, int position) {
+
         Log.d(TAG, "onBindViewHolder: called");
 
         final PostJobPojo postJobPOJO = postJobPojoArrayList.get(position);
-
 
         holder.jobTitle.setText(postJobPOJO.getJobTitle());
         holder.companyName.setText(postJobPOJO.getCompanyName());
@@ -59,6 +67,7 @@ public class ActiveJobsAdapter extends RecyclerView.Adapter<ActiveJobsAdapter.Ac
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), JobDetailsActiveJobs.class);
                 intent.putExtra("activeJobID", postJobPOJO.getId());
+                intent.putExtra("from", "activeJobs");
                 view.getContext().startActivity(intent);
 
             }

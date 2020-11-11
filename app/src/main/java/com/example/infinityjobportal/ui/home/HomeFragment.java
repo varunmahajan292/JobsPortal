@@ -71,7 +71,7 @@ public class HomeFragment extends Fragment {
 
 
       //  loadList();
-        loadMyJobsList();
+        //loadMyJobsList();
 
 
 
@@ -83,6 +83,13 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
+
+    @Override
+    public void onResume() {
+        //other stuff
+        super.onResume();
+        loadMyJobsList();
+    }
     private void loadList() {
 
         collectionReference//.whereLessThan("minSalary",20).whereGreaterThan("minSalary",10)
@@ -214,4 +221,6 @@ public class HomeFragment extends Fragment {
                 });
 
     }
+
+
 }

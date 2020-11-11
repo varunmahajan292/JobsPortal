@@ -13,8 +13,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
 import com.example.infinityjobportal.admin.AdminMainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -27,6 +25,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.auth.User;
+
 public class AdminLogin extends AppCompatActivity {
     private static final String TAG = "AdminLogin";
     public EditText email, pass;
@@ -101,22 +100,22 @@ public class AdminLogin extends AppCompatActivity {
                                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                                             User user = documentSnapshot.toObject(User.class);
 
-                                                /*
-                                               if(user.isAdmin())
-                                                {
-                                                    progressBar.setVisibility(View.GONE);
-                                                    //errorView.setText("");
-                                                    // errorView.setVisibility(View.GONE);
-                                                    Intent HomeActivity = new Intent(getApplicationContext(), AdminMainActivity.class);
-                                                    //   setResult(RESULT_OK, null);
-                                                    startActivity(HomeActivity);
-                                                }
-                                               // else {
-                                                    progressBar.setVisibility(View.GONE);
-                                                    errorView.setText("This Email Is Not SetUp For Admin Account.");
-                                               // }
+                                               /*
+                                              if(user.isAdmin())
+                                               {
+                                                   progressBar.setVisibility(View.GONE);
+                                                   //errorView.setText("");
+                                                   // errorView.setVisibility(View.GONE);
+                                                   Intent HomeActivity = new Intent(getApplicationContext(), AdminMainActivity.class);
+                                                   //   setResult(RESULT_OK, null);
+                                                   startActivity(HomeActivity);
+                                               }
+                                              // else {
+                                                   progressBar.setVisibility(View.GONE);
+                                                   errorView.setText("This Email Is Not SetUp For Admin Account.");
+                                              // }
 
-                                                 */
+                                                */
                                             Intent HomeActivity = new Intent(getApplicationContext(), AdminMainActivity.class);
                                             //   setResult(RESULT_OK, null);
                                             startActivity(HomeActivity);
@@ -189,8 +188,7 @@ public class AdminLogin extends AppCompatActivity {
                                                 .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                             @Override
                                             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                                User user = documentSnapshot.toObject(User.class);
-
+                                                //  User user = documentSnapshot.toObject(User.class);
 
 
                                             }
@@ -237,3 +235,4 @@ public class AdminLogin extends AppCompatActivity {
 
     }
 }
+

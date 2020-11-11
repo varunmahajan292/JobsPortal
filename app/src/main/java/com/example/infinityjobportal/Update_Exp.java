@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +49,7 @@ public class Update_Exp extends AppCompatActivity {
     Button update, spickdate, pickdate;
     FirebaseFirestore db;
     public FirebaseAuth mAuth;
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,7 @@ public class Update_Exp extends AppCompatActivity {
         // recyclerView = findViewById(R.id.recycleview);
         update = findViewById(R.id.update);
         faltu = findViewById(R.id.faltu);
+        back = findViewById(R.id.back);
 
         loeid =  getIntent().getStringExtra("loeid");
         db = FirebaseFirestore.getInstance();
@@ -338,7 +341,7 @@ public class Update_Exp extends AppCompatActivity {
 
                         Toast.makeText(getApplicationContext(), "Data Updated...", Toast.LENGTH_SHORT).show();
 
-                        startActivity(new Intent(Update_Exp.this, ListOfExperienceActiviy.class));
+                       finish();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -352,6 +355,16 @@ public class Update_Exp extends AppCompatActivity {
 
     }
     });
+
+
+
+
+       back.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               finish();
+           }
+       });
 }
 
     }

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.infinityjobportal.adapter.NewEducationAdapter;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -24,8 +25,9 @@ public class MainEducation extends AppCompatActivity {
     private NewEducationAdapter adapter;
     private List<pojoAddNewEducation> educationList;
     // private FirestoreRecyclerAdapter adapter;
-    ImageView addEducation;
+    ImageView addEducation, back;
 
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
 //private CollectionReference reference =db.collection("Education");
     //private AddNewEducationAdapter adapter;
 
@@ -36,13 +38,39 @@ public class MainEducation extends AppCompatActivity {
         setContentView(R.layout.activity_main_education);
         addEducation = findViewById(R.id.addEducation);
         recyclerViewEducation = findViewById(R.id.recyclerEducation);
+        back = findViewById(R.id.back);
+        educationList=new ArrayList<>();
+        loadData();
+
+        addEducation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainEducation.this, AddNewEducation.class);
+                startActivity(intent);
+            }
+        });
+
+
+        back.setOnClickListener(new View.OnClickListener() {
+                @Override
+             public void onClick(View view) {
+                    finish();
+             }
+        });
+
+
+
+    }
+
+    private void loadData() {
         recyclerViewEducation.setHasFixedSize(true);
         recyclerViewEducation.setLayoutManager(new LinearLayoutManager(this));
 
-        educationList=new ArrayList<>();
+
+        educationList.clear();
         adapter=new NewEducationAdapter(this, educationList);
         recyclerViewEducation.setAdapter(adapter);
-        db.collection("Education").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("Education").whereEqualTo("userid",mAuth.getCurrentUser().getEmail()).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 if(!queryDocumentSnapshots.isEmpty())
@@ -59,35 +87,13 @@ public class MainEducation extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-
-
-
-
-
-
-        addEducation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainEducation.this, AddNewEducation.class);
-                startActivity(intent);
-            }
-        });
-
-
-
-
-
-
     }
 
-
-
-
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        loadData();
+    }
 
 
 }

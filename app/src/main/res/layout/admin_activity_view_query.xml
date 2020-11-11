@@ -60,39 +60,11 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Query Id :" />
-
-            <TextView
-                android:id="@+id/queryId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="GGyXxgtyhh78ghh7"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Last Name" />
-
-            <TextView
-                android:id="@+id/lastname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Singh"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="First Name" />
+                android:text="From : " />
 
             <TextView
                 android:id="@+id/firstname"

@@ -1,67 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/headingBack"
     android:layout_height="match_parent"
-    tools:context=".ui.myProfile.MyProfile">
-
-
-
+    android:orientation="vertical"
+    tools:context=".profileViaadmin">
     <ScrollView
         android:id="@+id/scrolling"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
 
-            <LinearLayout
-                android:id="@+id/title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:background="@color/mainAppçColor"
-                android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/back"
-                    android:text=""
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-                <TextView
-                    android:layout_weight="1"
-                    android:id="@+id/Education"
-                    android:layout_width="0dp"
-                    android:gravity="center"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="Profile Information"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    />
-
-                <TextView
-                    android:id="@+id/save"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Save"
-                    android:visibility="invisible"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="10dp"
-                    android:textColor="@color/white"
-                    />
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -70,18 +26,34 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:paddingRight="20dp"
+                    android:visibility="invisible"
+                    android:paddingTop="20dp"
+                    android:src="@drawable/edit_symbol" />
+
+
+                <ImageView
                     android:id="@+id/userPic"
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:layout_marginTop="20dp"
-                    android:src="@drawable/user">
-                </ImageView>
+                    android:src="@drawable/user"></ImageView>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:paddingRight="20dp"
+                    android:paddingTop="20dp"
+                    android:id="@+id/editNameSection"
+                    android:src="@drawable/edit_symbol" />
 
             </LinearLayout>
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -154,7 +126,12 @@
                         android:layout_marginBottom="10dp"
                         android:text="About" />
 
-
+                    <ImageView
+                        android:id="@+id/editAboutSection"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:src="@drawable/edit_symbol" />
 
                 </LinearLayout>
 
@@ -198,6 +175,13 @@
                         android:textSize="20sp"
                         android:layout_marginBottom="10dp"
                         android:text="Availability" />
+
+                    <ImageView
+                        android:id="@+id/editAvailabilitySection"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:src="@drawable/edit_symbol" />
 
                 </LinearLayout>
 
@@ -374,12 +358,29 @@
                         android:layout_marginBottom="10dp"
                         android:text="Experience" />
 
+                    <ImageView
+                        android:id="@+id/editExperienceSection"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="invisible"
+                        android:layout_gravity="right"
+                        android:src="@drawable/edit_symbol" />
 
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recexp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/openExperience"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View More"
+                    android:textColor="@color/mainAppçColor"
+                    android:textSize="18sp"
+                    android:layout_gravity="center"
+                    />
 
             </LinearLayout>
 
@@ -412,6 +413,14 @@
                         android:layout_marginBottom="10dp"
                         android:text="Education" />
 
+                    <ImageView
+                        android:id="@+id/editEducationSection"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:visibility="invisible"
+                        android:src="@drawable/edit_symbol" />
+
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -420,6 +429,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
+                <TextView
+                    android:id="@+id/openEducation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View More"
+                    android:textColor="@color/mainAppçColor"
+                    android:textSize="18sp"
+                    android:layout_gravity="center"
+                    />
 
             </LinearLayout>
 
@@ -462,6 +480,15 @@
 
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/openSkills"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View More"
+                    android:textColor="@color/mainAppçColor"
+                    android:textSize="18sp"
+                    android:layout_gravity="center"
+                    />
 
             </LinearLayout>
 
@@ -509,6 +536,15 @@
                     android:id="@+id/rec"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/openInterest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View More"
+                    android:textColor="@color/mainAppçColor"
+                    android:textSize="18sp"
+                    android:layout_gravity="center"
+                    />
 
             </LinearLayout>
 
@@ -540,6 +576,12 @@
                         android:layout_marginBottom="10dp"
                         android:text="Contact Info" />
 
+                    <ImageView
+                        android:id="@+id/editContactInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:src="@drawable/edit_symbol" />
 
                 </LinearLayout>
                 <LinearLayout
@@ -646,10 +688,37 @@
                 android:paddingRight="20dp"
                 android:weightSum="10">
 
+                <LinearLayout
+                    android:id="@+id/changePassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:textColor="@color/black"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:text="Change Password" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:src="@drawable/ic_baseline_arrow_forward_24" />
+
+                </LinearLayout>
+
+
+
             </LinearLayout>
 
 
         </LinearLayout>
     </ScrollView>
 
-</FrameLayout>
+
+</LinearLayout>
+
+

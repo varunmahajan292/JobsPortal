@@ -1,5 +1,7 @@
 package com.example.infinityjobportal.ui.postedJobs.activeJobs;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,8 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.Navigation;
 
+import com.example.infinityjobportal.ClientLogin;
+import com.example.infinityjobportal.ClientSignUp;
 import com.example.infinityjobportal.R;
 import com.example.infinityjobportal.model.PostJobPojo;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,9 +32,9 @@ public class JobDetailsActiveJobs extends AppCompatActivity {
     private static final String TAG = "JobDetailsActiveJobs";
 
     TextView jobTitle, companyName, location, salary, language, applicationDeadline, joiningDate, jobDescription, skillsRequired, qualification, industry;
-    Button markClosed;
+    Button markClosed, markActive;
     ImageView back, editActiveJobs;
-
+String from;
     FirebaseFirestore db;
     String id;
 
@@ -51,12 +57,14 @@ public class JobDetailsActiveJobs extends AppCompatActivity {
         qualification = findViewById(R.id.qualificationTextViewActiveJob);
         industry = findViewById(R.id.industryTextViewActiveJob);
         markClosed = findViewById(R.id.markClosedButton);
+        markActive = findViewById(R.id.markActiveButton);
         back = findViewById(R.id.backActiveJobsDetails);
         editActiveJobs = findViewById(R.id.editJobImageViewActiveJob);
 
         db = FirebaseFirestore.getInstance();
 
         id = getIntent().getStringExtra("activeJobID");
+        from = getIntent().getStringExtra("from");
 
 
         DocumentReference docRef = db.collection("Jobs").document(id);
@@ -90,17 +98,26 @@ public class JobDetailsActiveJobs extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 DocumentReference docRef = db.collection("Jobs").document(id);
-
-
                 Map<String,Object> updates = new HashMap<>();
                 updates.put("status", "closed");
-
-
                 docRef.update((Map<String, Object>) updates)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 Log.d(TAG, "onComplete: called");
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(JobDetailsActiveJobs.this);
+                                builder.setMessage("Job moved to closed jobs section successfully...")
+                                        .setCancelable(false)
+                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                finish();
+                                            }
+                                        });
+                                AlertDialog alert = builder.create();
+                                alert.show();
+
+
 
                             }
                         })
@@ -108,12 +125,72 @@ public class JobDetailsActiveJobs extends AppCompatActivity {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 Log.d(TAG, "onFailure: called");
+                                AlertDialog.Builder builder = new AlertDialog.Builder(JobDetailsActiveJobs.this);
+                                builder.setMessage("Job not moved to closed jobs section. Please try again...")
+                                        .setCancelable(false)
+                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+
+                                            }
+                                        });
+                                AlertDialog alert = builder.create();
+                                alert.show();
                             }
                         });
-
-
             }
         });
+
+
+        markActive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DocumentReference docRef = db.collection("Jobs").document(id);
+                Map<String,Object> updates = new HashMap<>();
+                updates.put("status", "active");
+                docRef.update((Map<String, Object>) updates)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Log.d(TAG, "onComplete: called");
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(JobDetailsActiveJobs.this);
+                                builder.setMessage("Job moved to active jobs section successfully...")
+                                        .setCancelable(false)
+                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                finish();
+                                            }
+                                        });
+                                AlertDialog alert = builder.create();
+                                alert.show();
+
+
+
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.d(TAG, "onFailure: called");
+                                AlertDialog.Builder builder = new AlertDialog.Builder(JobDetailsActiveJobs.this);
+                                builder.setMessage("Job not moved to active jobs section. Please try again...")
+                                        .setCancelable(false)
+                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+
+                                            }
+                                        });
+                                AlertDialog alert = builder.create();
+                                alert.show();
+                            }
+                        });
+            }
+        });
+
+
+
+
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,6 +206,23 @@ public class JobDetailsActiveJobs extends AppCompatActivity {
             }
         });
 
+
+
+
+
+
+        if(from.equals("closedJobs"))
+        {
+                markActive.setVisibility(View.VISIBLE);
+        }
+        else if(from.equals("activeJobs"))
+        {
+            markClosed.setVisibility(View.VISIBLE);
+        }
+        else {
+            markClosed.setVisibility(View.GONE);
+            markActive.setVisibility(View.GONE);
+        }
         Log.d(TAG, "onCreate: ended");
     }
 }

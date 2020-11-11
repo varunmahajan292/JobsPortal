@@ -51,6 +51,7 @@ public class NewEducationAdapter extends RecyclerView.Adapter<NewEducationAdapte
         holder.timeperiod.setText("From"+"  " +pojoAddNewEducation.getStartDate()+"  "+ "To"+"  "+pojoAddNewEducation.getEndDate());
         holder.extraacts.setText("Activities and societies"+" - "+pojoAddNewEducation.getExtraActs());
         holder.description.setText("Description"+" - "+pojoAddNewEducation.getdescription());
+
         holder.update_education.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,6 +63,8 @@ public class NewEducationAdapter extends RecyclerView.Adapter<NewEducationAdapte
 
             }
         });
+
+
 
     }
 

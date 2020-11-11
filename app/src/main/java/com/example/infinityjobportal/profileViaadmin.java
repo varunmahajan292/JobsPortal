@@ -1,5 +1,12 @@
 package com.example.infinityjobportal;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,16 +16,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.infinityjobportal.adapter.InterestsAdapterProfile;
-import com.example.infinityjobportal.*;
 import com.example.infinityjobportal.adapter.LOEAdapterProfile;
 import com.example.infinityjobportal.adapter.NewEducationAdapterProfile;
 import com.example.infinityjobportal.model.InterestsModel;
@@ -41,9 +40,8 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewProfile extends AppCompatActivity {
-
-    ImageView userPic, editNameSection, editAboutSection, editContcatSection, back;
+public class profileViaadmin extends AppCompatActivity {
+    ImageView userPic, editNameSection, editAboutSection, editContcatSection;
     TextView editExperienceSection, editEducationSection, editInterestSection, editSkillsSection;
     TextView name, tagLine, location, about, email, number, website, address;
     TextView mon, tue, wed, thurs, fri, sat, sun;
@@ -64,20 +62,16 @@ public class ViewProfile extends AppCompatActivity {
     private NewEducationAdapterProfile adapter;
     private List<pojoAddNewEducation> educationList;
 
+    String s;
     RecyclerView recexp;
     LOEAdapterProfile loeAdapter;
     faltu_context context;
-    String id;
 
     ArrayList<LOEModel> listexp = new ArrayList<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_profile);
-
-  //      Toast.makeText(this, "ajit", Toast.LENGTH_SHORT).show();
-
+        setContentView(R.layout.activity_profile_viaadmin);
         editAvailabilitySection = findViewById(R.id.editAvailabilitySection);
         mon = findViewById(R.id.mon);
         tue = findViewById(R.id.tue);
@@ -106,14 +100,12 @@ public class ViewProfile extends AppCompatActivity {
         rec = findViewById(R.id.rec);
         recyclerViewEducation = findViewById(R.id.recyclerEducation);
         recexp = findViewById(R.id.recexp);
-        back = findViewById(R.id.back);
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
-        //s =getIntent().getStringExtra("email");
-        id = getIntent().getStringExtra("uid").toString();
+        s =getIntent().getStringExtra("email");
 
-        DocumentReference dref = db.collection("Availability").document(id);
+        DocumentReference dref = db.collection("Availability").document(s);
         dref.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
@@ -142,7 +134,7 @@ public class ViewProfile extends AppCompatActivity {
         });
 
 
-        DocumentReference docRef = db.collection("users").document(id);
+        DocumentReference docRef = db.collection("users").document(s);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -151,26 +143,26 @@ public class ViewProfile extends AppCompatActivity {
                     if (document.exists()) {
 
                         User user = document.toObject(User.class);
-                        email.setText(user.getEmail());
+                        email.setText(String.valueOf(s));
 
                         name.setText(user.getFirstName().substring(0, 1).toUpperCase() + user.getFirstName().substring(1) + " " + user.getLastName().substring(0, 1).toUpperCase() + user.getLastName().substring(1));
                         number.setText(user.getNumber());
 
                         if (user.getTagLine().equals("")) {
-                            tagLine.setText("Tag line not available.");
+                            tagLine.setText("Add your tag line.");
                         } else {
                             tagLine.setText(user.getTagLine());
                         }
 
 
                         if (user.getAbout().equals("")) {
-                            about.setText("About information not available.");
+                            about.setText("Add your about information.");
                         } else {
                             about.setText(user.getAbout());
                         }
 
                         if (user.getWebsite().equals("")) {
-                            website.setText("Website not available.");
+                            website.setText("Add your website.");
                             websiteUrl = "";
                             website.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.black));
                         } else {
@@ -180,8 +172,8 @@ public class ViewProfile extends AppCompatActivity {
                         }
 
                         if (user.getCity().equals("") || user.getProvince().equals("") || user.getCountry().equals("")) {
-                            location.setText("Address not available.");
-                            address.setText("Address not available");
+                            location.setText("Add your location for better experience.");
+                            address.setText("Add your Address");
 
                         } else {
                             location.setText(user.getCity().substring(0, 1).toUpperCase() + user.getCity().substring(1) + ", " + user.getProvince().substring(0, 1).toUpperCase() + user.getProvince().substring(1) + ", " + user.getCountry().substring(0, 1).toUpperCase() + user.getCountry().substring(1));
@@ -208,7 +200,7 @@ public class ViewProfile extends AppCompatActivity {
 
                                 //Picasso.get().load(uri).into(limg);
 
-                                // Toast.makeText(getApplicationContext(),"Success.",Toast.LENGTH_SHORT).show();
+                                // Toast.makeText(getContext(),"Success.",Toast.LENGTH_SHORT).show();
 
                             }
                         }).addOnFailureListener(new OnFailureListener() {
@@ -229,7 +221,7 @@ public class ViewProfile extends AppCompatActivity {
         });
 
 
-        db.collection("LOE").whereEqualTo("a", "extra").whereEqualTo("userId",id).get()
+        db.collection("LOE").whereEqualTo("a", "extra").limit(2).get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -264,7 +256,7 @@ public class ViewProfile extends AppCompatActivity {
 
 
         // loading interest
-        db.collection("interest").whereEqualTo("faltu", "extra").whereEqualTo("userid",id).get()
+        db.collection("interest").whereEqualTo("faltu", "extra").limit(2).get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -300,11 +292,7 @@ public class ViewProfile extends AppCompatActivity {
         educationList = new ArrayList<>();
         adapter = new NewEducationAdapterProfile(getApplicationContext(), educationList);
         recyclerViewEducation.setAdapter(adapter);
-
-
-
-
-        db.collection("Education").whereEqualTo("userid",id).get()
+        db.collection("Education").limit(2).get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -322,6 +310,35 @@ public class ViewProfile extends AppCompatActivity {
                 });
 
 
+        userPic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), UpdateUserPic.class);
+                startActivity(i);
+            }
+        });
+
+
+        editNameSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), EditNameSection.class));
+            }
+        });
+
+        editAboutSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), UpdateAbout.class));
+            }
+        });
+
+        editContcatSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), UpdateContactSection.class));
+            }
+        });
 
         website.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -336,12 +353,49 @@ public class ViewProfile extends AppCompatActivity {
         });
 
 
-
-    back.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        finish();
-        }
+        editAvailabilitySection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), EditAvailability.class);
+                startActivity(i);
+            }
         });
+
+
+        changePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), ClientChangePassword.class));
+            }
+        });
+
+
+        editEducationSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), MainEducation.class));
+            }
+        });
+
+        editInterestSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), interests.class));
+            }
+        });
+
+        editExperienceSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), ListOfExperienceActiviy.class));
+            }
+        });
+
+
+
     }
+
+
 }
+
+

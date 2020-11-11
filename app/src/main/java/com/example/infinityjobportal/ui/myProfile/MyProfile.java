@@ -129,6 +129,119 @@ public class MyProfile extends Fragment {
         db = FirebaseFirestore.getInstance();
 
 
+
+
+      //  loadData();
+
+
+
+
+
+        userPic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), UpdateUserPic.class);
+                startActivity(i);
+            }
+        });
+
+
+        editNameSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), EditNameSection.class));
+            }
+        });
+
+        editAboutSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), UpdateAbout.class));
+            }
+        });
+
+        editContcatSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), UpdateContactSection.class));
+            }
+        });
+
+        website.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!websiteUrl.equals("")) {
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(websiteUrl));
+                    startActivity(i);
+                }
+
+            }
+        });
+
+
+        editAvailabilitySection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), EditAvailability.class);
+                startActivity(i);
+            }
+        });
+
+
+        changePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), ClientChangePassword.class));
+            }
+        });
+
+
+        editEducationSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), MainEducation.class));
+            }
+        });
+
+        editInterestSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), interests.class));
+            }
+        });
+
+        editExperienceSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), ListOfExperienceActiviy.class));
+            }
+        });
+
+        editSkillsSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), SkillActivity.class));
+
+            }
+        });
+
+
+
+
+        return root;
+    }
+
+    @Override
+    public void onResume() {
+        //other stuff
+        super.onResume();
+        loadData();
+    }
+
+    private void loadData() {
+
+
         DocumentReference dref = db.collection("Availability").document(mAuth.getCurrentUser().getEmail());
         dref.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
@@ -245,7 +358,9 @@ public class MyProfile extends Fragment {
         });
 
 
-        db.collection("LOE").whereEqualTo("a", "extra").limit(2).get()
+        listexp.clear();
+
+        db.collection("LOE").whereEqualTo("a", "extra").whereEqualTo("userId",mAuth.getCurrentUser().getEmail()).limit(2).get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -280,7 +395,8 @@ public class MyProfile extends Fragment {
 
 
         // loading interest
-        db.collection("interest").whereEqualTo("faltu", "extra").limit(2).get()
+        list.clear();
+        db.collection("interest").whereEqualTo("faltu", "extra").whereEqualTo("userid",mAuth.getCurrentUser().getEmail()).limit(2).get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -316,7 +432,9 @@ public class MyProfile extends Fragment {
         educationList = new ArrayList<>();
         adapter = new NewEducationAdapterProfile(getContext(), educationList);
         recyclerViewEducation.setAdapter(adapter);
-        db.collection("Education").limit(2).get()
+
+        educationList.clear();
+        db.collection("Education").whereEqualTo("userid",mAuth.getCurrentUser().getEmail()).limit(2).get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -334,97 +452,6 @@ public class MyProfile extends Fragment {
                 });
 
 
-        userPic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getContext(), UpdateUserPic.class);
-                startActivity(i);
-            }
-        });
-
-
-        editNameSection.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), EditNameSection.class));
-            }
-        });
-
-        editAboutSection.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), UpdateAbout.class));
-            }
-        });
-
-        editContcatSection.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), UpdateContactSection.class));
-            }
-        });
-
-        website.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!websiteUrl.equals("")) {
-                    Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse(websiteUrl));
-                    startActivity(i);
-                }
-
-            }
-        });
-
-
-        editAvailabilitySection.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getContext(), EditAvailability.class);
-                startActivity(i);
-            }
-        });
-
-
-        changePassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), ClientChangePassword.class));
-            }
-        });
-
-
-        editEducationSection.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), MainEducation.class));
-            }
-        });
-
-        editInterestSection.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), interests.class));
-            }
-        });
-
-        editExperienceSection.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), ListOfExperienceActiviy.class));
-            }
-        });
-
-        editSkillsSection.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), SkillActivity.class));
-
-            }
-        });
-
-
-        return root;
     }
 
 

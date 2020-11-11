@@ -1,6 +1,8 @@
 package com.example.infinityjobportal.ui.postedJobs.activeJobs;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -8,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.infinityjobportal.GlobalStorage;
 import com.example.infinityjobportal.R;
 import com.example.infinityjobportal.adapter.Adapterjoblist;
 import com.example.infinityjobportal.adapter.adapterAppliedJobs;
@@ -28,11 +31,12 @@ import static java.security.AccessController.getContext;
 
 public class ViewApplicationActiveJobs extends AppCompatActivity {
     String id,b;
+
     ArrayList<PostJobPojo> list = new ArrayList<>();
     ArrayList<User> list2 = new ArrayList<>();
     ArrayList<PostJobPojo> list3 = new ArrayList<>();
     ArrayList<String > l = new ArrayList<String>();
-
+    ImageView  back;
 
     private FirebaseFirestore db;
     ArrayList<String> candidateList = new ArrayList<>();
@@ -48,7 +52,7 @@ public class ViewApplicationActiveJobs extends AppCompatActivity {
         setContentView(R.layout.activity_view_application_active_jobs);
         viewApplicationsRecyclerView = findViewById(R.id.viewApplicationsRecyclerView);
         id = getIntent().getStringExtra("activeJobID");
-
+        back = findViewById(R.id.back);
         setTitle("Applications");
 
         db = FirebaseFirestore.getInstance();
@@ -57,7 +61,12 @@ public class ViewApplicationActiveJobs extends AppCompatActivity {
 
 
 
-
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         db.collection("MyJobs").whereEqualTo("jobId", id).whereEqualTo("type","application").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -73,10 +82,12 @@ public class ViewApplicationActiveJobs extends AppCompatActivity {
 
 
                                 l.add(d.getString("uid"));
-                                //Toast.makeText(getApplicationContext(),d.getString("uid"),Toast.LENGTH_SHORT).show();
+
+                              ////Toast.makeText(getApplicationContext(),d.getString("uid"),Toast.LENGTH_SHORT).show();
                             }
 
-                            showdata();
+                            //GlobalStorage.cnt_applicants =l.size();
+                                    showdata();
 
 
                         }

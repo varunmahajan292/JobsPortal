@@ -69,6 +69,11 @@ public class MyJobDetails extends AppCompatActivity {
             save.setVisibility(View.INVISIBLE);
 
         }
+        else if(s.equals("khatam")){
+            apply.setVisibility(View.INVISIBLE);
+            save.setVisibility(View.INVISIBLE);
+
+        }
         else {
             apply.setVisibility(View.VISIBLE);
             save.setVisibility(View.VISIBLE);

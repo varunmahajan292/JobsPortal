@@ -9,6 +9,7 @@ public class GlobalStorage {
     public  static String language="";
     public  static String province="";
 
+   public static int cnt_applicants=0;
 
     public static boolean showmsg=false;
 

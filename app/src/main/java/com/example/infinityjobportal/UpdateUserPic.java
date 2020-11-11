@@ -113,10 +113,11 @@ public class UpdateUserPic extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(UpdateUserPic.this);
-                                builder.setMessage("A verification Email Is Sent To Your Registered EmailID, please click on the link and Sign in again!")
+                                builder.setMessage("Profile Pic Deleted")
                                         .setCancelable(false)
                                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int id) {
+                                                finish();
 
                                             }
                                         });
@@ -152,8 +153,8 @@ public class UpdateUserPic extends AppCompatActivity {
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         // Get a URL to the uploaded content
                         // Uri downloadUrl = taskSnapshot.getUploadSessionUri();  //getDownloadUrl();
-                        Toast.makeText(getApplicationContext(),
-                                "Image uploaded", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getApplicationContext(),
+//                                "Image uploaded", Toast.LENGTH_LONG).show();
                         updateDatabase();
 
 
@@ -218,16 +219,37 @@ public class UpdateUserPic extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(getApplicationContext(),"Data Updated...",Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(getApplicationContext(),"Data Updated...",Toast.LENGTH_SHORT).show();
                         progressBar.setVisibility(View.GONE);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateUserPic.this);
+                        builder.setMessage("Profile Pic Updated")
+                                .setCancelable(false)
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        finish();
+
+                                    }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplicationContext(),"Data Not Updated. Try Again..,",Toast.LENGTH_SHORT).show();
 
                         progressBar.setVisibility(View.GONE);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateUserPic.this);
+                        builder.setMessage("Profile Pic Not updated. Please Try Again...")
+                                .setCancelable(false)
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        finish();
+
+                                    }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.show();
                     }
                 });
     }

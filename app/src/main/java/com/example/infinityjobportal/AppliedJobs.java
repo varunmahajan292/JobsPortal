@@ -123,7 +123,8 @@ public class AppliedJobs extends Fragment {
                             user.setJobTitle(document.getString("jobTitle"));
                             user.setJobCategory(document.getString("jobCategory"));
                             user.setCityAddress(String.valueOf(document.getString("cityAddress")+", "+document.getString("provinceAddress")));
-                            user.setId(String.valueOf(b));
+                           // user.setId(String.valueOf(b));
+                            user.setId(String.valueOf(document.getId()));
                             user.setProvinceAddress("application");
                             list2.add(user);
                             //  Toast.makeText(getContext(),user.getJobTitle(),Toast.LENGTH_SHORT).show();

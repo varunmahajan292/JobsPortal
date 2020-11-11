@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,8 +30,8 @@ import static java.util.Calendar.getInstance;
 
 public class AddNewEducation extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private Button save, back;
-    TextView textStart, textEnd;
+    private ImageView back;
+    TextView textStart, textEnd ,save;
     FirebaseAuth mAuth;
     private EditText school1, degree1, fieldOfStudy1, startdate, enddate, grades, extraAct, description1;
     CollectionReference reference = db.collection("Education");
@@ -39,8 +40,8 @@ public class AddNewEducation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_education);
-        save = findViewById(R.id.button_save);
-        back = findViewById(R.id.button_back);
+        save = findViewById(R.id.save);
+        back = findViewById(R.id.back);
         school1 = findViewById(R.id.school);
         degree1 = findViewById(R.id.Degree);
         fieldOfStudy1 = findViewById(R.id.studyField);
@@ -145,9 +146,7 @@ public class AddNewEducation extends AppCompatActivity {
                         }
                     });
 
-
-                    Intent intent = new Intent(AddNewEducation.this, MainEducation.class);
-                    startActivity(intent);
+                    finish();
 
                 }
             }
@@ -232,17 +231,6 @@ public class AddNewEducation extends AppCompatActivity {
                 return false;
             }
         });
-
-
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(AddNewEducation.this, MainEducation.class);
-                startActivity(intent);
-
-            }
-        });
-
 
     }
 }

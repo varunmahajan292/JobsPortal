@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -40,7 +41,7 @@ Context context;
     class ExampleViewHolder extends RecyclerView.ViewHolder {
 
         TextView textView1;
-        CardView lout;
+        LinearLayout lout;
 
         TextView title, at, location,id, category, language, salary;
         ImageView saveJob;
@@ -103,7 +104,6 @@ Context context;
                 context.startActivity(i);
             }
         });
-
 
         holder.saveJob.setOnClickListener(new View.OnClickListener() {
              @Override

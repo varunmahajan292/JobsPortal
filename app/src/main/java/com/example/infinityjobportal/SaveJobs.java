@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.infinityjobportal.adapter.AdapterSaveJob;
+
 import com.example.infinityjobportal.adapter.adapterAppliedJobs;
 import com.example.infinityjobportal.model.PostJobPojo;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -37,7 +39,7 @@ public class SaveJobs extends Fragment {
     StorageReference mstorageRef;
     RecyclerView recy;
     FirebaseAuth fbauth;
-    adapterAppliedJobs InteAdapter;
+    AdapterSaveJob InteAdapter;
     public FirebaseAuth fbAuth;
     Context c;
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -91,7 +93,11 @@ public class SaveJobs extends Fragment {
 
         return root;
     }
+public void removesing(int pos){
+        list2.remove(pos);
+        InteAdapter.notifyItemRemoved(pos);
 
+}
     private void showdata() {
         for (int i = 0; i < l.size(); i++) {
 
@@ -109,16 +115,18 @@ public class SaveJobs extends Fragment {
                             user.setJobTitle(document.getString("jobTitle"));
                             user.setJobCategory(document.getString("jobCategory"));
                             user.setCityAddress(String.valueOf(document.getString("cityAddress")+", "+document.getString("provinceAddress")));
-                            user.setId(String.valueOf(b));
+                            //user.setId(String.valueOf(b));
+                            user.setId(String.valueOf(document.getId()));
                             user.setProvinceAddress("save");
 
                             list2.add(user);
                             //  Toast.makeText(getContext(),user.getJobTitle(),Toast.LENGTH_SHORT).show();
                             //InteAdapter.notifyDataSetChanged();
-                            InteAdapter = new adapterAppliedJobs( getContext(),list2);
+                            InteAdapter = new AdapterSaveJob( getContext(),list2);
 
                             recy.setHasFixedSize(true);
                             recy.setLayoutManager(new LinearLayoutManager(c, RecyclerView.VERTICAL, false));
+
                             recy.setAdapter(InteAdapter);
 
                         } else {
@@ -135,4 +143,7 @@ public class SaveJobs extends Fragment {
             // Toast.makeText(getApplicationContext(),l.get(i),Toast.LENGTH_SHORT).show();
 
 
-        }}}
+        }
+
+
+    }}

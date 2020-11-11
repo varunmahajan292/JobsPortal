@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -34,6 +35,7 @@ public class interests extends AppCompatActivity {
     EditText ed_interests;
     public String a="";
     Button bt_add;
+    ImageView back;
     // FirebaseFirestore db;
     StorageReference mstorageRef;
     RecyclerView rec;
@@ -41,7 +43,7 @@ public class interests extends AppCompatActivity {
     InterestsAdapter InteAdapter;
     Context c;
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
-    ArrayList<InterestsModel> list=new ArrayList<>();
+    ArrayList<InterestsModel> list =new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +52,19 @@ public class interests extends AppCompatActivity {
         ed_interests = findViewById(R.id.ed_interests);
         bt_add = findViewById(R.id.bt_add);
         rec=findViewById(R.id.rec);
-        fbauth=FirebaseAuth.getInstance();
+        rec=findViewById(R.id.rec);
+        back=findViewById(R.id.back);
 
         db = FirebaseFirestore.getInstance();
+fbauth=FirebaseAuth.getInstance();
+
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
       //  mstorageRef = FirebaseStorage.getInstance().getReference("Images");
         bt_add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,23 +90,29 @@ public class interests extends AppCompatActivity {
 
                 }else {
                     Toast.makeText(getApplicationContext(), "Interests added successfull", Toast.LENGTH_SHORT).show();
-                    Intent ii = new Intent(getApplicationContext(), interests.class);
-                    startActivity(ii);
-
+                    ed_interests.setText("");
+                  //  Intent ii = new Intent(getApplicationContext(), interests.class);
+                   // startActivity(ii);
+                    sdata();
                 }
 
 
             }
 
         });
-        db.collection("interest").whereEqualTo("faltu","extra").get()
+        sdata();
+
+    }
+    public void sdata(){
+
+        db.collection("interest").whereEqualTo("faltu","extra").whereEqualTo("userid",fbauth.getCurrentUser().getEmail()).get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
                         if (!queryDocumentSnapshots.isEmpty()) {
 
-
+list.clear();
                             List<DocumentSnapshot> list1 = queryDocumentSnapshots.getDocuments();
 
                             for (DocumentSnapshot d : list1) {
@@ -110,12 +128,11 @@ public class interests extends AppCompatActivity {
                         }
                     }
                 });
-        InteAdapter =new InterestsAdapter(list, c, "af");
+        InteAdapter =new InterestsAdapter(list, getApplicationContext(), "af");
 
         rec.setHasFixedSize(true);
         rec.setLayoutManager(new LinearLayoutManager(c,RecyclerView.VERTICAL,false));
         rec.setAdapter(InteAdapter);
-
 
     }
 }

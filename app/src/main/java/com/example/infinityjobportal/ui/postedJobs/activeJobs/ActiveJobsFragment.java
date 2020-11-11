@@ -38,6 +38,7 @@ public class ActiveJobsFragment extends Fragment {
     private ActiveJobsAdapter activeJobsAdapter;
     private ArrayList<PostJobPojo> documentList = new ArrayList<PostJobPojo>();
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -76,12 +77,19 @@ public class ActiveJobsFragment extends Fragment {
                                 PostJobPojo postJobPojo = documentSnapshot.toObject(PostJobPojo.class);
                                 postJobPojo.setId(documentSnapshot.getId());
 
+
                                 documentList.add(postJobPojo);
                             }
+
                             activeJobsAdapter.notifyDataSetChanged();
                         }
                     }
+
+
+
                 });
+
+
 
 
         activeJobsAdapter = new ActiveJobsAdapter(getContext(), documentList);

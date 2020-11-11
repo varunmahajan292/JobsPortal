@@ -13,13 +13,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewProfile"></activity>
+        <activity android:name=".profileViaadmin"></activity>
+        <activity android:name=".ViewProfile"  android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ui.postJob.EditActiveJobs" />
         <activity android:name=".ui.postedJobs.closedJobs.JobDetailsClosedJobs" />
         <activity
             android:name=".ui.postedJobs.activeJobs.JobDetailsActiveJobs"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-        <activity android:name=".ui.postedJobs.activeJobs.ViewApplicationActiveJobs"  android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ui.postedJobs.activeJobs.ViewApplicationActiveJobs"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Successful" />
         <activity android:name=".UpdateCompanyPicActivity" />
         <activity
@@ -32,7 +35,7 @@
             android:name=".Filter"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity android:name=".Search" />
-        <activity android:name=".interests" />
+        <activity android:name=".interests" android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".CompanyProfileActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
@@ -66,10 +69,10 @@
         <activity
             android:name=".admin.ViewQuery"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-        <activity android:name=".AddNewEducation" />
-        <activity android:name=".EditEducation" />
-        <activity android:name=".MainEducation" />
-        <activity android:name=".Update_Exp" />
+        <activity android:name=".AddNewEducation"  android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".EditEducation" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MainEducation" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Update_Exp" android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Search_jobs" />
         <activity android:name=".Jobs_search" />
         <activity android:name=".Applied_jobs" />

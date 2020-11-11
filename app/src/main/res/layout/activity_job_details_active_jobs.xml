@@ -337,11 +337,29 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
+                    android:visibility="gone"
                     android:textColor="#ffffff"
                     android:background="@drawable/button_pressed"
                     android:text="Mark Closed">
 
                 </Button>
+
+                <Button
+                    android:id="@+id/markActiveButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:visibility="gone"
+                    android:background="@drawable/button_pressed"
+                    android:text="Mark Active">
+
+                </Button>
+
+
+
 
             </LinearLayout>
         </LinearLayout>

@@ -4,6 +4,7 @@
     android:id="@+id/application_constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
     android:background="@drawable/edit_text_background">
 
     <TextView
@@ -25,7 +26,7 @@
         android:id="@+id/applicantAddressTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="22dp"
         android:fontFamily="@font/robotoregular"
         android:text="Applicant Address"
         android:textSize="18sp"
