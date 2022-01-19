@@ -98,8 +98,8 @@ public class ClosedJobsAdapter extends RecyclerView.Adapter<ClosedJobsAdapter.Cl
                                         .setCancelable(false)
                                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int id) {
-                                                postJobPojoArrayList.remove(p);
-                                                notifyItemRemoved(p);
+                                              //  postJobPojoArrayList.remove(p);
+                                                //notifyItemRemoved(p);
 
                                             }
                                         });

@@ -66,6 +66,7 @@ public class JobDetails extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         id = getIntent().getStringExtra("id");
+
 //        String s =getIntent().getStringExtra("status");
 /*
        if (s.equals("save")){
@@ -90,7 +91,7 @@ public class JobDetails extends AppCompatActivity {
 
 
 
-        Toast.makeText(getApplicationContext(),id,Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getApplicationContext(),id,Toast.LENGTH_SHORT).show();
 
         loadInfo();
 

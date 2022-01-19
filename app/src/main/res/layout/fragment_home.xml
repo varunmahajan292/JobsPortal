@@ -11,9 +11,20 @@
     android:layout_width="match_parent"
     android:text=""
     android:layout_margin="10dp"
+    android:visibility="gone"
     android:layout_height="wrap_content"
     android:id="@+id/text"
     />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:text="Filters &amp; Search"
+        android:layout_margin="10dp"
+        android:textAlignment="viewEnd"
+        android:layout_gravity="right"
+        android:layout_height="wrap_content"
+        android:id="@+id/search"
+        tools:ignore="RtlCompat" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recJobList"

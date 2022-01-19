@@ -3,6 +3,7 @@ package com.example.infinityjobportal.adapter;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,7 +69,9 @@ String rr="";
             @Override
             public void onClick(View view) {
                 //////////////
-
+                if(holder.del.getText().toString()=="np"){
+                    return;
+                }
                 db.collection("interest")
                         .whereEqualTo("id", holder.del.getText().toString())
                         .get()
@@ -77,9 +80,12 @@ String rr="";
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
                                     for (QueryDocumentSnapshot document : task.getResult()) {
-                                        // holder.saveJob.setImageResource(R.drawable.removed);
-                                        l.remove(position);
-                                        notifyItemRemoved(position);
+                                        // holder.minus.setImageResource(R.drawable.removed);
+                                       // l.remove(position);
+                                        //notifyItemRemoved(position);
+                                        Drawable img = context.getResources().getDrawable(R.drawable.removed);
+                                        holder.minus.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null);
+                                       holder.del.setText("np");
                                         rr= String.valueOf(document.getId());
                                         // Log.d(TAG, document.getId() + " => " + document.getData());
                                         delsave();

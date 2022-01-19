@@ -64,6 +64,7 @@ public class UpdateAbout extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Void> task) {
                                 Toast.makeText(getApplicationContext(),"Data Updated...",Toast.LENGTH_SHORT).show();
                                 progressBar.setVisibility(View.GONE);
+                                finish();
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {

@@ -134,6 +134,7 @@ public class AddNewEducation extends AppCompatActivity {
                     CollectionReference reference = db.collection("Education");
 
                     pojoAddNewEducation pojoaddNewEducation = new pojoAddNewEducation(school, degree, fieldOfStudy, startDate, endDate, grade, extraActs, discription, userId);
+
                     reference.add(pojoaddNewEducation).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {

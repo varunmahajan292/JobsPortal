@@ -95,6 +95,7 @@ public class UpdateContactSection extends AppCompatActivity {
                             .repeat(2)
                             .playOn(apartment);
                     apartment.setError("Invalid");
+                    progressBar.setVisibility(View.GONE);
                     return;
                 }
                 if (TextUtils.isEmpty(build)) {
@@ -103,6 +104,7 @@ public class UpdateContactSection extends AppCompatActivity {
                             .repeat(2)
                             .playOn(building);
                     building.setError("Invalid");
+                    progressBar.setVisibility(View.GONE);
                     return;
                 }
                 if (TextUtils.isEmpty(Street)) {
@@ -111,6 +113,7 @@ public class UpdateContactSection extends AppCompatActivity {
                             .repeat(2)
                             .playOn(street);
                     street.setError("Invalid");
+                    progressBar.setVisibility(View.GONE);
                     return;
                 }
                 if (TextUtils.isEmpty(City)) {
@@ -119,6 +122,7 @@ public class UpdateContactSection extends AppCompatActivity {
                             .repeat(2)
                             .playOn(city);
                     city.setError("Invalid");
+                    progressBar.setVisibility(View.GONE);
                     return;
                 }
                 if (TextUtils.isEmpty(Province)) {
@@ -127,6 +131,7 @@ public class UpdateContactSection extends AppCompatActivity {
                             .repeat(2)
                             .playOn(province);
                     province.setError("Invalid");
+                    progressBar.setVisibility(View.GONE);
                     return;
                 }
                 if (TextUtils.isEmpty(Country)) {
@@ -135,6 +140,7 @@ public class UpdateContactSection extends AppCompatActivity {
                             .repeat(2)
                             .playOn(country);
                     country.setError("Invalid");
+                    progressBar.setVisibility(View.GONE);
                     return;
                 }
                 if (TextUtils.isEmpty(Zipcode)) {
@@ -143,6 +149,7 @@ public class UpdateContactSection extends AppCompatActivity {
                             .repeat(2)
                             .playOn(zip);
                     zip.setError("Invalid");
+                    progressBar.setVisibility(View.GONE);
                     return;
                 }
 

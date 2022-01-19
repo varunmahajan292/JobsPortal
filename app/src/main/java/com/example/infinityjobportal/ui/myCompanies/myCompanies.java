@@ -18,8 +18,11 @@ import com.example.infinityjobportal.R;
 import com.example.infinityjobportal.adapter.*;
 import com.example.infinityjobportal.adapter.CompanyAdapter;
 import com.example.infinityjobportal.model.Company;
+import com.example.infinityjobportal.model.PostJobPojo;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -28,6 +31,7 @@ import java.util.List;
 
 public class myCompanies extends Fragment {
     FirebaseFirestore firebaseFirestore;
+    FirebaseAuth mAuth;
 
     private List<Company> companyList;
     CompanyAdapter adapter;
@@ -41,6 +45,10 @@ public class myCompanies extends Fragment {
         View root = inflater.inflate(R.layout.fragment_my_companies, container, false);
 
         FloatingActionButton fab = root.findViewById(R.id.fab);
+
+        mAuth  = FirebaseAuth.getInstance();
+
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,23 +57,39 @@ public class myCompanies extends Fragment {
             }
         });
 
+
+
         firebaseFirestore = FirebaseFirestore.getInstance();
 
         companyList = new ArrayList<>();
+
         // setup recycler view
         recyclerView = root.findViewById(R.id.recyclerView);
+
+
+
+      //  getCompanies();
+        return root;
+    }
+
+
+
+    @Override
+    public void onResume() {
+        //other stuff
+        super.onResume();
+        getCompanies();
+    }
+
+    private void getCompanies() {
+
         recyclerView.setHasFixedSize(true);
         adapter = new CompanyAdapter(getContext(), companyList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(adapter);
 
-        getCompanies();
-        return root;
-    }
-
-    private void getCompanies() {
         companyList.clear();
-        firebaseFirestore.collection("mycompanies").get()
+        firebaseFirestore.collection("mycompanies").whereEqualTo("userId",mAuth.getCurrentUser().getEmail()).get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot documentSnapshots) {
@@ -78,12 +102,26 @@ public class myCompanies extends Fragment {
                             // document.
                             List<Company> companies = documentSnapshots.toObjects(Company.class);
 
+                            List<DocumentSnapshot> list1 = documentSnapshots.getDocuments();
+
+                            for (DocumentSnapshot d : list1) {
+
+                                Company p = d.toObject(Company.class);
+                                p.setId(d.getId());
+
+                                companyList.add(p);
+                                }
+
+
+                            }
+
+
                             // Add all to your list
-                            companyList.addAll(companies);
+
                             Log.d(TAG, "onSuccess: " + companyList);
                             adapter.notifyDataSetChanged();
                         }
-                    }
+
 
 
                 });

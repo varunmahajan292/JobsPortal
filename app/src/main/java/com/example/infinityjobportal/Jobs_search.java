@@ -186,15 +186,16 @@ int cout=0;
                         for (DocumentSnapshot d : list1) {
                           int cout=0;
                             PostJobPojo p = d.toObject(PostJobPojo.class);
-                            p.setJobTitle(d.getString("jobTitle"));
-                            p.setCompanyName(d.getString("companyName"));
-                            p.setCityAddress(d.getString("cityAddress"));
+                           // p.setJobTitle(d.getString("jobTitle"));
+                            //p.setCompanyName(d.getString("companyName"));
+                            //p.setCityAddress(d.getString("cityAddress"));
                             p.setId(d.getId());
 
-
-                            for(int i=0; i<saveIdList.size(); i++) {
-                                if(d.getId().equals(String.valueOf(saveIdList.get(i)))) {
-                                    cout=1;
+                            if(!saveIdList.isEmpty()) {
+                                for (int i = 0; i < saveIdList.size(); i++) {
+                                    if (d.getId().equals(String.valueOf(saveIdList.get(i)))) {
+                                        cout = 1;
+                                    }
                                 }
                             }
                             if(cout==0)

@@ -12,6 +12,7 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -20,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.infinityjobportal.JobDetails;
 import com.example.infinityjobportal.R;
+import com.example.infinityjobportal.ViewProfile;
 import com.example.infinityjobportal.model.PostJobPojo;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -83,7 +85,7 @@ Context context;
 
     @Override
     public void onBindViewHolder(@NonNull final ExampleViewHolder holder, int position) {
-        PostJobPojo currentItem = exampleList.get(position);
+        final PostJobPojo currentItem = exampleList.get(position);
 
       //  holder.imageView.setImageResource(currentItem.gett());
         holder.textView1.setText(currentItem.getJobTitle());
@@ -96,18 +98,25 @@ Context context;
         mAuth = FirebaseAuth.getInstance();
         db=FirebaseFirestore.getInstance();
 
+        holder.saveJob.setVisibility(View.INVISIBLE);
+
         holder.lout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(context, JobDetails.class);
-                i.putExtra("id", holder.id.getText().toString());
-                context.startActivity(i);
+                //Toast.makeText(context, currentItem.getId(), Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(view.getContext(), JobDetails.class);
+                intent.putExtra("id", holder.id.getText().toString());
+                view.getContext().startActivity(intent);
             }
         });
 
         holder.saveJob.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
+                 if(holder.id.getText().toString()=="np"){
+                     return;
+                 }
                  HashMap apllication = new HashMap();
                  apllication.put("uid",mAuth.getCurrentUser().getEmail());
                  apllication.put("jobId",holder.id.getText().toString());
@@ -122,6 +131,9 @@ Context context;
                                          .setCancelable(false)
                                          .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                              public void onClick(DialogInterface dialog, int id) {
+                                                 holder.saveJob.setImageResource(R.drawable.tickgreen);
+                                                 holder.id.setText("np");
+
                                                  //  finish();
                                              }
                                          });
@@ -139,14 +151,6 @@ Context context;
 
              }
          });
-        holder.lout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(context, JobDetails.class);
-                i.putExtra("id", holder.id.getText().toString());
-                context.startActivity(i);
-            }
-        });
 
 
 

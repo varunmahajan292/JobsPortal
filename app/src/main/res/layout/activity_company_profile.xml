@@ -197,7 +197,8 @@
         android:text="Contact"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2" />
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        android:layout_marginLeft="5dp" />
 
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -221,6 +222,7 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/robotomedium"
         android:text="Phone : +1-154-786-843"
+        android:visibility="gone"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvEmail"

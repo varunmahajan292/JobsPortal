@@ -117,7 +117,7 @@ public class MyProfile extends Fragment {
         editAboutSection = root.findViewById(R.id.editAboutSection);
         editEducationSection = root.findViewById(R.id.openEducation);
         editExperienceSection = root.findViewById(R.id.openExperience);
-        editSkillsSection = root.findViewById(R.id.openSkills);
+
         editInterestSection = root.findViewById(R.id.openInterest);
         editContcatSection = root.findViewById(R.id.editContactInfo);
         changePassword = root.findViewById(R.id.changePassword);
@@ -167,17 +167,17 @@ public class MyProfile extends Fragment {
             }
         });
 
-        website.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!websiteUrl.equals("")) {
-                    Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse(websiteUrl));
-                    startActivity(i);
-                }
-
-            }
-        });
+//        website.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                if (!websiteUrl.equals("")) {
+////                    Intent i = new Intent(Intent.ACTION_VIEW);
+////                    i.setData(Uri.parse(websiteUrl));
+////                    startActivity(i);
+////                }
+//
+//            }
+//        });
 
 
         editAvailabilitySection.setOnClickListener(new View.OnClickListener() {
@@ -218,13 +218,6 @@ public class MyProfile extends Fragment {
             }
         });
 
-        editSkillsSection.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), SkillActivity.class));
-
-            }
-        });
 
 
 

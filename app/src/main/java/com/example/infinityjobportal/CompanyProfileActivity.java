@@ -44,21 +44,25 @@ public class CompanyProfileActivity extends AppCompatActivity {
         tvAbout = findViewById(R.id.tvAbout);
         tvDescription = findViewById(R.id.tvDescription);
         tvEmail = findViewById(R.id.tvEmail);
-        tvPhone = findViewById(R.id.tvPhone);
         ivCompanyLogo = findViewById(R.id.ivCompanyLogo);
+        back = findViewById(R.id.back);
 
-        companyId = getIntent().getStringExtra("id");
+       companyId = getIntent().getStringExtra("id");
         final String name = getIntent().getStringExtra("name");
         final String industry = getIntent().getStringExtra("industry");
         final String country = getIntent().getStringExtra("country");
         final String email = getIntent().getStringExtra("email");
-        final String contact = getIntent().getStringExtra("contact");
+       // final String contact = getIntent().getStringExtra("contact");
         final String desc = getIntent().getStringExtra("desc");
         final String about = getIntent().getStringExtra("about");
         final String web = getIntent().getStringExtra("web");
         final String city = getIntent().getStringExtra("city");
         final String state = getIntent().getStringExtra("state");
-        final String company_image = getIntent().getStringExtra("company_image");
+        final String location = getIntent().getStringExtra("location");
+        final String address1 = getIntent().getStringExtra("address1");
+        final String address2 = getIntent().getStringExtra("address2");
+
+
 
         tvCompanyName.setText(name);
         tvIndustry.setText(industry);
@@ -67,7 +71,7 @@ public class CompanyProfileActivity extends AppCompatActivity {
         tvAbout.setText(about);
         tvDescription.setText(desc);
         tvEmail.setText(email);
-        tvPhone.setText(contact);
+//        tvPhone.setText(contact);
 
         edit=findViewById(R.id.edit);
         edit.setOnClickListener(new View.OnClickListener() {
@@ -79,18 +83,20 @@ public class CompanyProfileActivity extends AppCompatActivity {
                 i.putExtra("industry", industry);
                 i.putExtra("country", country);
                 i.putExtra("email", email);
-                i.putExtra("contact", contact);
+//                i.putExtra("contact", contact);
                 i.putExtra("desc", desc);
                 i.putExtra("about", about);
                 i.putExtra("web", web);
                 i.putExtra("city", city);
                 i.putExtra("state", state);
-                i.putExtra("company_image", company_image);
+                i.putExtra("location", location);
+                i.putExtra("address1",address1);
+                i.putExtra("address2", address2);
                 startActivity(i);
                 finish();
             }
         });
-        back = findViewById(R.id.back);
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,25 +104,6 @@ public class CompanyProfileActivity extends AppCompatActivity {
             }
         });
 
-
-        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
-        StorageReference storageReference = firebaseStorage.getReference();
-
-        StorageReference imageRef = storageReference.child("company/" + company_image);
-        imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Glide.with(CompanyProfileActivity.this).load(uri).into(ivCompanyLogo);
-
-                //Toast.makeText(getApplicationContext(),"Success.",Toast.LENGTH_SHORT).show();
-
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                //Toast.makeText(getApplicationContext(),"fail.",Toast.LENGTH_SHORT).show();
-            }
-        });
 
 
     }

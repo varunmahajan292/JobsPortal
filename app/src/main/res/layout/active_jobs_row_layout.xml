@@ -77,14 +77,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/jobDetailsDraftJobsButton" />
 
-    <TextView
-        android:id="@+id/numberOfApplicationTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/robotoregular"
-        android:text="Number of application"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/viewApplicationsActiveJobButton"
-        app:layout_constraintEnd_toEndOf="@+id/viewApplicationsActiveJobButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

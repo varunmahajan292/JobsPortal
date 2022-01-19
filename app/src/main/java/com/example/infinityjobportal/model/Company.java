@@ -46,6 +46,8 @@ public class Company {
         this.company_image = company_image;
     }
 
+
+
     public String getCompany_image() {
         return company_image;
     }

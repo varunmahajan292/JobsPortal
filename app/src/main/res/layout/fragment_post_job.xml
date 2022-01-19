@@ -70,6 +70,18 @@
                 app:layout_constraintStart_toStartOf="@+id/letsGetStartedTextView"
                 app:layout_constraintTop_toBottomOf="@+id/letsGetStartedTextView" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/text"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Select the job category"
+                app:layout_constraintEnd_toEndOf="@+id/companyNameSpinner"
+                app:layout_constraintStart_toStartOf="@+id/companyNameSpinner"
+                app:layout_constraintTop_toBottomOf="@+id/companyNameSpinner"
+                tools:ignore="MissingConstraints" />
+
             <Spinner
                 android:id="@+id/jobCategorySpinner"
                 android:layout_width="0dp"
@@ -81,9 +93,9 @@
                 android:fontFamily="@font/robotoregular"
                 android:padding="10dp"
                 android:spinnerMode="dropdown"
-                app:layout_constraintEnd_toEndOf="@+id/companyNameSpinner"
-                app:layout_constraintStart_toStartOf="@+id/companyNameSpinner"
-                app:layout_constraintTop_toBottomOf="@+id/companyNameSpinner" />
+                app:layout_constraintEnd_toEndOf="@+id/text"
+                app:layout_constraintStart_toStartOf="@+id/text"
+                app:layout_constraintTop_toBottomOf="@+id/text" />
 
             <EditText
                 android:id="@+id/jobTitleEditText"

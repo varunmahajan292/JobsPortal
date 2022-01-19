@@ -33,6 +33,7 @@ import static java.util.Calendar.getInstance;
 public class EditEducation extends AppCompatActivity implements OnClickListener {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private TextView textstart,textend;
+    DatePickerDialog datePickerDialog;
     private ImageView back, update, delete;
 
     private EditText school1, degree1, fieldOfStudy1, startdate, enddate, grades, extraAct, discription1;
@@ -70,25 +71,19 @@ public class EditEducation extends AppCompatActivity implements OnClickListener 
             @Override
             public void onClick(View v) {
 
-                Calendar calendar = getInstance();
-                int YEAR = calendar.get(Calendar.YEAR);
-                int MONTH = calendar.get(Calendar.MONTH);
-                int DATE = calendar.get(Calendar.DATE);
+                final Calendar calendar = Calendar.getInstance();
+                final int year = calendar.get(Calendar.YEAR);
+                final int month = calendar.get(Calendar.MONTH);
+                final int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(EditEducation.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int year, int month, int date) {
 
-                        Calendar calendar1 = getInstance();
-                        calendar1.set(Calendar.YEAR, year);
-                        calendar1.set(Calendar.MONTH, month);
-                        calendar1.set(Calendar.DATE, date);
-                        String dateText = DateFormat.format("E, MM, d, yyyy", calendar1).toString();
-
-                        startdate.setText(dateText);
-                    }
-                }, YEAR, MONTH, DATE);
-
+                datePickerDialog = new DatePickerDialog(EditEducation.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                textstart.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                            }
+                        }, year, month, day);
                 datePickerDialog.show();
             }
         });
@@ -98,26 +93,19 @@ public class EditEducation extends AppCompatActivity implements OnClickListener 
         textend.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                final Calendar calendar = Calendar.getInstance();
+                final int year = calendar.get(Calendar.YEAR);
+                final int month = calendar.get(Calendar.MONTH);
+                final int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-                Calendar calendar = getInstance();
-                int YEAR = calendar.get(Calendar.YEAR);
-                int MONTH = calendar.get(Calendar.MONTH);
-                int DATE = calendar.get(Calendar.DATE);
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(EditEducation.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int year, int month, int date) {
-
-                        Calendar calendar1 = getInstance();
-                        calendar1.set(Calendar.YEAR, year);
-                        calendar1.set(Calendar.MONTH, month);
-                        calendar1.set(Calendar.DATE, date);
-                        String dateText = DateFormat.format("E, MM, d, yyyy", calendar1).toString();
-
-                        enddate.setText(dateText);
-                    }
-                }, YEAR, MONTH, DATE);
-
+                datePickerDialog = new DatePickerDialog(EditEducation.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                textend.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                            }
+                        }, year, month, day);
                 datePickerDialog.show();
             }
         });

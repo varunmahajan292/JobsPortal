@@ -3,6 +3,7 @@ package com.example.infinityjobportal.ui.postedJobs.activeJobs;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -38,8 +39,10 @@ public class ViewApplicationActiveJobs extends AppCompatActivity {
     ArrayList<String > l = new ArrayList<String>();
     ImageView  back;
 
+    TextView msg;
+
     private FirebaseFirestore db;
-    ArrayList<String> candidateList = new ArrayList<>();
+    ArrayList<String> resumeList = new ArrayList<>();
     ArrayList<User> candidateListData = new ArrayList<>();
 
     ViewApplicationAdapter viewApplicationAdapter;
@@ -53,6 +56,7 @@ public class ViewApplicationActiveJobs extends AppCompatActivity {
         viewApplicationsRecyclerView = findViewById(R.id.viewApplicationsRecyclerView);
         id = getIntent().getStringExtra("activeJobID");
         back = findViewById(R.id.back);
+        msg = findViewById(R.id.msg);
         setTitle("Applications");
 
         db = FirebaseFirestore.getInstance();
@@ -82,6 +86,8 @@ public class ViewApplicationActiveJobs extends AppCompatActivity {
 
 
                                 l.add(d.getString("uid"));
+                                resumeList.add(d.getString("resume"));
+
 
                               ////Toast.makeText(getApplicationContext(),d.getString("uid"),Toast.LENGTH_SHORT).show();
                             }
@@ -123,12 +129,13 @@ public class ViewApplicationActiveJobs extends AppCompatActivity {
 
                                             //  Toast.makeText(getContext(),user.getJobTitle(),Toast.LENGTH_SHORT).show();
                                             //InteAdapter.notifyDataSetChanged();
-                                            viewApplicationAdapter = new ViewApplicationAdapter( getApplicationContext(),list2);
+                                            viewApplicationAdapter = new ViewApplicationAdapter( getApplicationContext(),list2, resumeList);
 
                                             viewApplicationsRecyclerView.setHasFixedSize(true);
                                             viewApplicationsRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL, false));
                                             viewApplicationsRecyclerView.setAdapter(viewApplicationAdapter);
 
+                                            msg.setVisibility(View.GONE);
                                         } else {
 
                                         }

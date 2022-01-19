@@ -21,19 +21,23 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class UploadResume extends AppCompatActivity {
     ImageView back;
     TextView message;
     Button apply, uploadPdf;
-
+ArrayList<String> deleteList = new ArrayList<>();
     StorageReference mstorageRef;
     String a;
     String b;
@@ -58,7 +62,7 @@ public class UploadResume extends AppCompatActivity {
         id = getIntent().getStringExtra("jobId");
 
 
-        Toast.makeText(getApplicationContext(),id,Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getApplicationContext(),id,Toast.LENGTH_SHORT).show();
 
 
 
@@ -70,12 +74,12 @@ public class UploadResume extends AppCompatActivity {
         });
 
 
-
+//checkSave();
         apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(uploadTask != null && uploadTask.isInProgress()) {
-                    Toast.makeText(getApplicationContext(), "Upload in progress", Toast.LENGTH_LONG).show();
+                   // Toast.makeText(getApplicationContext(), "Upload in progress", Toast.LENGTH_LONG).show();
 
                 } else {
                     Fileuploader();
@@ -115,6 +119,13 @@ public class UploadResume extends AppCompatActivity {
                                 .addOnSuccessListener(new OnSuccessListener() {
                                     @Override
                                     public void onSuccess(Object o) {
+
+
+                                       // checkSave();
+
+//                                        if(!deleteList.isEmpty()) {
+//                                            deleteJobMyjobs();
+//                                        }
 
                                         Intent i = new Intent(getApplicationContext(),Successful.class);
                                         startActivity(i);
@@ -169,6 +180,61 @@ public class UploadResume extends AppCompatActivity {
                 });
 
     }
+
+    private void deleteJobMyjobs() {
+for(int i = 0;i<deleteList.size();i++) {
+
+    db.collection("MyJobs").document(deleteList.get(i)).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+        @Override
+        public void onSuccess(Void aVoid) {
+
+        }
+    }).addOnFailureListener(new OnFailureListener() {
+        @Override
+        public void onFailure(@NonNull Exception e) {
+
+        }
+    });
+
+}
+    }
+
+    private void checkSave() {
+
+
+        db.collection("MyJobs").whereEqualTo("jobId",id).whereEqualTo("uid",mAuth.getCurrentUser().getEmail()).whereEqualTo("type","save")
+             .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                List<DocumentSnapshot> list1 = queryDocumentSnapshots.getDocuments();
+
+                for (DocumentSnapshot d : list1) {
+
+                    // PostJobPojo p = d.toObject(PostJobPojo.class); :
+                    //  p.setJobTitle(d.getString("jobTitle"));
+                    // p.setCompanyName(d.getString("companyName"));
+                    //p.setCityAddress(d.getString("cityAddress"));
+                    //p.setId(d.getId());
+
+                    deleteList.add(d.getId());
+
+                   // Toast.makeText(UploadResume.this, " delete : "+d.getId(), Toast.LENGTH_SHORT).show();
+
+
+                    // saveIdList.add(d.getId());
+                    // Toast.makeText(getContext(),d.getString("jobId"),Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(),saveIdList,Toast.LENGTH_SHORT).show();
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
+    }
+
+
 
     private String getExtension(Uri uri) {
         ContentResolver cr = getContentResolver();

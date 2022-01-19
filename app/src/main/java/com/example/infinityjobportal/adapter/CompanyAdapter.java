@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -39,22 +40,28 @@ public class CompanyAdapter extends RecyclerView.Adapter<CompanyAdapter.ViewHold
             tvIndustry = view.findViewById(R.id.tvIndustry);
             tvLocation = view.findViewById(R.id.tvLocation);
             constraintLayout = view.findViewById(R.id.constraintLayout);
+
             constraintLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     company = companyList.get(getAdapterPosition());
+                   // Toast.makeText(context,company.getName(),Toast.LENGTH_SHORT).show();
+
                     Intent i = new Intent(context, CompanyProfileActivity.class);
                     i.putExtra("id", company.getId());
                     i.putExtra("name", company.getName());
                     i.putExtra("industry", company.getIndustry());
                     i.putExtra("country", company.getCountry());
                     i.putExtra("email", company.getEmail());
-                    i.putExtra("contact", company.getContact());
                     i.putExtra("desc", company.getDesc());
                     i.putExtra("about", company.getAbout());
                     i.putExtra("web", company.getWeb());
                     i.putExtra("city", company.getCity());
                     i.putExtra("state", company.getState());
+                    i.putExtra("location", company.getLocation());
+                    i.putExtra("address1", company.getLine1());
+                    i.putExtra("address2", company.getLine2());
+
                     context.startActivity(i);
                 }
             });
@@ -88,6 +95,8 @@ public class CompanyAdapter extends RecyclerView.Adapter<CompanyAdapter.ViewHold
         holder.tvCompanyName.setText(company.getName());
         holder.tvIndustry.setText(company.getIndustry());
         holder.tvLocation.setText(company.getLocation());
+
+       // Toast.makeText(context,"delete : "+ company.getId(),Toast.LENGTH_SHORT).show();
 
     }
 

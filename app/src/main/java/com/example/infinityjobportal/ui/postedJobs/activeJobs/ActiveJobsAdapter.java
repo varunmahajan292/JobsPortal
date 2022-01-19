@@ -106,7 +106,6 @@ public class ActiveJobsAdapter extends RecyclerView.Adapter<ActiveJobsAdapter.Ac
             jobTitle = itemView.findViewById(R.id.jobTitleDraftJobsTextView);
             companyName = itemView.findViewById(R.id.companyNameDraftJobsTextView);
             companyAddress = itemView.findViewById(R.id.companyAddressDraftJobsTextView);
-            numberOfApplications = itemView.findViewById(R.id.numberOfApplicationTextView);
             viewDetails = itemView.findViewById(R.id.jobDetailsDraftJobsButton);
             viewApplication = itemView.findViewById(R.id.viewApplicationsActiveJobButton);
             constraintLayout = itemView.findViewById(R.id.active_jobs_constraint_layout);

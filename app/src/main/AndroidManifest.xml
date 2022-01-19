@@ -14,6 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".profileViaadmin"></activity>
+        <activity android:name=".UploadResumeFromSavedJobs" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ViewProfile"  android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ui.postJob.EditActiveJobs" />
         <activity android:name=".ui.postedJobs.closedJobs.JobDetailsClosedJobs" />
@@ -39,11 +40,11 @@
         <activity
             android:name=".CompanyProfileActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-        <activity android:name=".AddCompanyActivity" />
+        <activity android:name=".AddCompanyActivity" android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EditCompanyActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-        <activity android:name=".MapFilterData" />
+        <activity android:name=".MapFilterData"  android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".SearchViewMap"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />

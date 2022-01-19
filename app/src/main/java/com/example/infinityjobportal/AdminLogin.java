@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.infinityjobportal.admin.AdminMainActivity;
+import com.example.infinityjobportal.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,7 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.auth.User;
+
 
 public class AdminLogin extends AppCompatActivity {
     private static final String TAG = "AdminLogin";
@@ -100,7 +101,9 @@ public class AdminLogin extends AppCompatActivity {
                                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                                             User user = documentSnapshot.toObject(User.class);
 
-                                               /*
+                                            //user.setAdmin(documentSnapshot);
+
+
                                               if(user.isAdmin())
                                                {
                                                    progressBar.setVisibility(View.GONE);
@@ -110,15 +113,15 @@ public class AdminLogin extends AppCompatActivity {
                                                    //   setResult(RESULT_OK, null);
                                                    startActivity(HomeActivity);
                                                }
-                                              // else {
+                                               else {
                                                    progressBar.setVisibility(View.GONE);
                                                    errorView.setText("This Email Is Not SetUp For Admin Account.");
-                                              // }
+                                               }
 
-                                                */
-                                            Intent HomeActivity = new Intent(getApplicationContext(), AdminMainActivity.class);
+
+                                          //  Intent HomeActivity = new Intent(getApplicationContext(), AdminMainActivity.class);
                                             //   setResult(RESULT_OK, null);
-                                            startActivity(HomeActivity);
+                                            //startActivity(HomeActivity);
                                         }
                                     });
 
@@ -188,7 +191,22 @@ public class AdminLogin extends AppCompatActivity {
                                                 .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                             @Override
                                             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                                //  User user = documentSnapshot.toObject(User.class);
+                                                 User user = documentSnapshot.toObject(User.class);
+
+                                                if(user.isAdmin())
+                                                {
+                                                    progressBar.setVisibility(View.GONE);
+                                                    //errorView.setText("");
+                                                    // errorView.setVisibility(View.GONE);
+                                                    Intent HomeActivity = new Intent(getApplicationContext(), AdminMainActivity.class);
+                                                    //   setResult(RESULT_OK, null);
+                                                    startActivity(HomeActivity);
+                                                }
+                                                else {
+                                                    progressBar.setVisibility(View.GONE);
+                                                    errorView.setText("This Email Is Not SetUp For Admin Account.");
+                                                }
+
 
 
                                             }
@@ -199,13 +217,7 @@ public class AdminLogin extends AppCompatActivity {
                                             }
                                         });
                                         //errorView.setText("");
-                                        // errorView.setVisibility(View.GONE);
-                                        Intent HomeActivity = new Intent(getApplicationContext(), AdminMainActivity.class);
-                                        //   setResult(RESULT_OK, null);
-                                        startActivity(HomeActivity);
-
-
-
+                                        // errorView.setVisibility(View.GONE)
                                     } else {
 
                                         progressBar.setVisibility(View.GONE);

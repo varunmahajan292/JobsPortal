@@ -180,7 +180,8 @@ FirebaseAuth mAuth;
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, companyNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mCompanyNameSpinner.setAdapter(adapter);
-        myCompaniesCollectionRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
+        myCompaniesCollectionRef.whereEqualTo("userId",mAuth.getCurrentUser().getEmail()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
@@ -315,7 +316,7 @@ FirebaseAuth mAuth;
                 Log.d(TAG, "onClick: for job submit started");
 
                 //Firestore values
-                String companyName = mCompanyNameEditText.getText().toString();
+                String companyName = mCompanyNameSpinner.getSelectedItem().toString();
                 String jobCategory = mJobCategorySpinner.getSelectedItem().toString();
                 String jobTitle = mJobTitleEditText.getText().toString();
                 String streetAddress = mStreetAddressEditText.getText().toString();
@@ -345,7 +346,7 @@ FirebaseAuth mAuth;
                 String date = currentDate.format(todayDate);
 
                 String Add= mStreetAddressEditText.getText().toString()+","+ mCityAddressEditText.getText().toString();
-                Toast.makeText(getContext(),"location"+Add,Toast.LENGTH_LONG).show();
+                //Toast.makeText(getContext(),"location"+Add,Toast.LENGTH_LONG).show();
                 List<Address> addressList = null;
                 if (Add != null || !Add.equals("")) {
                     Geocoder geocoder = new Geocoder(getContext());
@@ -775,7 +776,7 @@ FirebaseAuth mAuth;
             @Override
             public void onClick(View view) {
 
-                String companyName = mCompanyNameEditText.getText().toString();
+                String companyName = mCompanyNameSpinner.getSelectedItem().toString();
                 String jobCategory = mJobCategorySpinner.getSelectedItem().toString();
                 String jobTitle = mJobTitleEditText.getText().toString();
                 String streetAddress = mStreetAddressEditText.getText().toString();
@@ -1186,7 +1187,7 @@ FirebaseAuth mAuth;
                                 @Override
                                 public void onSuccess(DocumentReference documentReference) {
                                     Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
-                                    Toast.makeText(getContext(), "", Toast.LENGTH_SHORT).show();
+                                  //  Toast.makeText(getContext(), "", Toast.LENGTH_SHORT).show();
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
@@ -1217,15 +1218,15 @@ FirebaseAuth mAuth;
     private boolean hasValidationErrors(String companyName, String jobCategory, String jobTitle, String streetAddress, String city, String province, String language, Double minSalary, Double maxSalary, String joiningDate, String applicationDeadline, String jobDescription, String skillsRequired, String qualificationRequired) {
 
 
-        if (companyName.isEmpty()) {
-            mCompanyNameEditText.setError("Company Name is required");
-            mCompanyNameEditText.requestFocus();
-            return true;
-        }
-        if (jobCategory.equals("Select the job category")) {
-            mCompanyNameEditText.setError("Job category is required");
-            mCompanyNameEditText.requestFocus();
-        }
+//        if (companyName.isEmpty()) {
+//            mCompanyNameEditText.setError("Company Name is required");
+//            mCompanyNameEditText.requestFocus();
+//            return true;
+//        }
+//        if (jobCategory.equals("Select the job category")) {
+//            mCompanyNameEditText.setError("Job category is required");
+//            mCompanyNameEditText.requestFocus();
+//        }
         if (jobTitle.isEmpty()) {
             mJobTitleEditText.setError("Title is required");
             mJobTitleEditText.requestFocus();

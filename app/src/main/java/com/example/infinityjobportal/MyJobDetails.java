@@ -1,6 +1,7 @@
 package com.example.infinityjobportal;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -96,34 +97,13 @@ public class MyJobDetails extends AppCompatActivity {
         apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                HashMap apllication = new HashMap();
-                apllication.put("uid",mAuth.getCurrentUser().getEmail());
-                apllication.put("jobId",id);
-                apllication.put("type","application");
+//                Intent i = new Intent(getApplicationContext(),UploadResumeFromSavedJobs.class);
+//                i.putExtra("jobId",id);
+//                startActivity(i);
 
-                db.collection("MyJobs").add(apllication)
-                        .addOnSuccessListener(new OnSuccessListener() {
-                            @Override
-                            public void onSuccess(Object o) {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(MyJobDetails.this);
-                                builder.setMessage("Application Submitted.")
-                                        .setCancelable(false)
-                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int id) {
-                                                finish();
-                                            }
-                                        });
-                                AlertDialog alert = builder.create();
-                                alert.show();
-
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-
-                            }
-                        });
+                Intent intent = new Intent(view.getContext(), UploadResumeFromSavedJobs.class);
+                intent.putExtra("jobId",id);
+                view.getContext().startActivity(intent);
 
             }
         });

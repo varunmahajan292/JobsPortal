@@ -50,7 +50,7 @@ ArrayList<String> deleteList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_upload_resume);
+        setContentView(R.layout.activity_upload_resume_from_saved_job);
         back = findViewById(R.id.back);
         apply = findViewById(R.id.apply);
         uploadPdf = findViewById(R.id.uploadPdf);
@@ -79,7 +79,7 @@ checkSave();
             @Override
             public void onClick(View view) {
                 if(uploadTask != null && uploadTask.isInProgress()) {
-                    Toast.makeText(getApplicationContext(), "Upload in progress", Toast.LENGTH_LONG).show();
+                   // Toast.makeText(getApplicationContext(), "Upload in progress", Toast.LENGTH_LONG).show();
 
                 } else {
                     Fileuploader();
@@ -129,7 +129,7 @@ checkSave();
 
                                         Intent i = new Intent(getApplicationContext(),Successful.class);
                                         startActivity(i);
-                                        JobDetails.getInstance().finish();
+                                        //JobDetails.getInstance().finish();
                                         finish();
 
 

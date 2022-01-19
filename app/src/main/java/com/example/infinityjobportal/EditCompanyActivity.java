@@ -104,7 +104,9 @@ public class EditCompanyActivity extends AppCompatActivity {
         final String web = getIntent().getStringExtra("web");
         final String city = getIntent().getStringExtra("city");
         final String state = getIntent().getStringExtra("state");
-        final String company_image = getIntent().getStringExtra("company_image");
+        final String location = getIntent().getStringExtra("location");
+        final String address1 = getIntent().getStringExtra("address1");
+        final String address2 = getIntent().getStringExtra("address2");
 
         tvCompanyName.setText(name);
         spnIndustry.setPrompt(industry);
@@ -116,23 +118,12 @@ public class EditCompanyActivity extends AppCompatActivity {
         tvWeb.setText(web);
         tvEmail.setText(email);
         tvContact.setText(contact);
+        tvLocation.setText(location);
+        tvLine1.setText(address1);
+        tvLine2.setText(address2);
 
         save = findViewById(R.id.save);
 
-        ivLogo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (ActivityCompat.checkSelfPermission(EditCompanyActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(EditCompanyActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, PICK_IMAGE_PERMISSION);
-                } else {
-                    Intent i = new Intent(EditCompanyActivity.this, UpdateCompanyPicActivity.class);
-                    i.putExtra("companyid", companyId);
-                    startActivity(i);
-                    finish();
-                }
-            }
-        });
 
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -142,28 +133,12 @@ public class EditCompanyActivity extends AppCompatActivity {
             }
         });
 
-        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
-        StorageReference storageReference = firebaseStorage.getReference();
-
-        StorageReference imageRef = storageReference.child("company/" + company_image);
-        imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Glide.with(EditCompanyActivity.this).load(uri).into(ivLogo);
-
-                //Toast.makeText(getApplicationContext(),"Success.",Toast.LENGTH_SHORT).show();
-
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                //Toast.makeText(getApplicationContext(),"fail.",Toast.LENGTH_SHORT).show();
-            }
-        });
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Toast.makeText(EditCompanyActivity.this, "update", Toast.LENGTH_SHORT).show();
                 String companyName = tvCompanyName.getText().toString();
                 String location = tvLocation.getText().toString();
                 String line1 = tvLine1.getText().toString();
@@ -178,60 +153,57 @@ public class EditCompanyActivity extends AppCompatActivity {
                 String contact = tvContact.getText().toString();
 
 
-                if (TextUtils.isEmpty(companyName)) {
-                    tvCompanyName.setError("Invalid");
-                    return;
-                }
+//                if (TextUtils.isEmpty(companyName)) {
+//                    tvCompanyName.setError("Invalid");
+//                    return;
+//                }
+//
+//                if (TextUtils.isEmpty(location)) {
+//                    tvLocation.setError("Invalid");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(line1)) {
+//                    tvLine1.setError("Invalid");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(line2)) {
+//                    tvLine2.setError("Invalid");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(city)) {
+//                    tvCity.setError("Invalid");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(state)) {
+//                    tvState.setError("Invalid");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(country)) {
+//                    tvCountry.setError("Invalid");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(about)) {
+//                    tvAbout.setError("Invalid");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(desc)) {
+//                    tvDesc.setError("Invalid");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(web)) {
+//                    YoYo.with(Techniques.Shake)
+//                            .duration(700)
+//                            .repeat(2)
+//                            .playOn(tvWeb);
+//                    tvWeb.setError("Invalid");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(email)) {
+//                    tvEmail.setError("Invalid");
+//                    return;
+//                }
 
-                if (TextUtils.isEmpty(location)) {
-                    tvLocation.setError("Invalid");
-                    return;
-                }
-                if (TextUtils.isEmpty(line1)) {
-                    tvLine1.setError("Invalid");
-                    return;
-                }
-                if (TextUtils.isEmpty(line2)) {
-                    tvLine2.setError("Invalid");
-                    return;
-                }
-                if (TextUtils.isEmpty(city)) {
-                    tvCity.setError("Invalid");
-                    return;
-                }
-                if (TextUtils.isEmpty(state)) {
-                    tvState.setError("Invalid");
-                    return;
-                }
-                if (TextUtils.isEmpty(country)) {
-                    tvCountry.setError("Invalid");
-                    return;
-                }
-                if (TextUtils.isEmpty(about)) {
-                    tvAbout.setError("Invalid");
-                    return;
-                }
-                if (TextUtils.isEmpty(desc)) {
-                    tvDesc.setError("Invalid");
-                    return;
-                }
-                if (TextUtils.isEmpty(web)) {
-                    YoYo.with(Techniques.Shake)
-                            .duration(700)
-                            .repeat(2)
-                            .playOn(tvWeb);
-                    tvWeb.setError("Invalid");
-                    return;
-                }
-                if (TextUtils.isEmpty(email)) {
-                    tvEmail.setError("Invalid");
-                    return;
-                }
 
-                if (TextUtils.isEmpty(contact)) {
-                    tvContact.setError("Invalid");
-                    return;
-                }
                 Log.e("here", "here");
 
 
@@ -249,7 +221,6 @@ public class EditCompanyActivity extends AppCompatActivity {
                 order.put("web", web);
                 order.put("email", email);
                 order.put("contact", contact);
-                order.put("userId", userId);
                 order.put("industry", spnIndustry.getSelectedItem().toString());
 
 
@@ -260,6 +231,7 @@ public class EditCompanyActivity extends AppCompatActivity {
                             public void onSuccess(Void aVoid) {
 
                                 Toast.makeText(EditCompanyActivity.this, "Company Updated Successfully", Toast.LENGTH_SHORT).show();
+                                finish();
 
                             }
                         })

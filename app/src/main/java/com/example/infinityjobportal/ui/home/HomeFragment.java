@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.infinityjobportal.ClientLogin;
+import com.example.infinityjobportal.Filter;
 import com.example.infinityjobportal.GlobalStorage;
 import com.example.infinityjobportal.Jobs_search;
 import com.example.infinityjobportal.R;
@@ -64,10 +65,12 @@ public class HomeFragment extends Fragment {
 
         recjoblist=root.findViewById(R.id.recJobList);
         text=root.findViewById(R.id.text);
+        search=root.findViewById(R.id.search);
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         collectionReference = db.collection("Jobs");
+
 
 
       //  loadList();
@@ -76,7 +79,12 @@ public class HomeFragment extends Fragment {
 
 
 
-
+search.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        startActivity(new Intent(getContext(), Filter.class));
+    }
+});
 
 
 
@@ -161,8 +169,9 @@ public class HomeFragment extends Fragment {
                            // showToast();
                             //adapter.notifyDataSetChanged();
 
-                            loadNotAplyedList();
+
                         }
+                        loadNotAplyedList();
 
                     }
 
@@ -183,9 +192,11 @@ public class HomeFragment extends Fragment {
                                         PostJobPojo p = d.toObject(PostJobPojo.class);
                                         p.setId(d.getId());
 
-                                        for(int i=0; i<saveIdList.size(); i++) {
-                                            if(d.getId().equals(String.valueOf(saveIdList.get(i)))) {
-                                                count=1;
+                                        if(!saveIdList.isEmpty()) {
+                                            for (int i = 0; i < saveIdList.size(); i++) {
+                                                if (d.getId().equals(String.valueOf(saveIdList.get(i)))) {
+                                                    count = 1;
+                                                }
                                             }
                                         }
                                         if(count==0)

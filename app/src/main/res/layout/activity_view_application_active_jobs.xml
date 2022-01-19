@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".ui.postedJobs.activeJobs.ViewApplicationActiveJobs">
 
@@ -50,14 +51,22 @@
             android:text="Save"
             android:textColor="@color/white" />
     </LinearLayout>
+    <TextView
+        android:id="@+id/msg"
+        android:text="No Any Application Received Yet."
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="DuplicateIds" />
+
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/viewApplicationsRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+/>
+</LinearLayout>

@@ -29,6 +29,7 @@ import androidx.core.app.ActivityCompat;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
@@ -78,7 +79,7 @@ public class AddCompanyActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
-        userId = mAuth.getCurrentUser().getUid();
+        userId = mAuth.getCurrentUser().getEmail();
 
         ivLogo = findViewById(R.id.ivLogo);
         //   ivCamera = findViewById(R.id.ivCamera);
@@ -94,7 +95,6 @@ public class AddCompanyActivity extends AppCompatActivity {
         tvDesc = findViewById(R.id.tvDesc);
         tvWeb = findViewById(R.id.tvWeb);
         tvEmail = findViewById(R.id.tvEmail);
-        tvContact = findViewById(R.id.tvContact);
         spnIndustry = findViewById(R.id.tvIndustry);
         back = findViewById(R.id.back);
         save = findViewById(R.id.save);
@@ -125,6 +125,8 @@ public class AddCompanyActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+             //   Toast.makeText(getApplicationContext(),"save button", Toast.LENGTH_SHORT).show();
                 String companyName = tvCompanyName.getText().toString();
                 String location = tvLocation.getText().toString();
                 String line1 = tvLine1.getText().toString();
@@ -136,68 +138,63 @@ public class AddCompanyActivity extends AppCompatActivity {
                 String desc = tvDesc.getText().toString();
                 String web = tvWeb.getText().toString();
                 String email = tvEmail.getText().toString();
-                String contact = tvContact.getText().toString();
 
 
-                if (TextUtils.isEmpty(companyName)) {
-                    tvCompanyName.setError("Invalid");
-                    return;
-                }
 
-                if (TextUtils.isEmpty(location)) {
-                    tvLocation.setError("Invalid");
-                    return;
-                }
-                if (TextUtils.isEmpty(line1)) {
-                    tvLine1.setError("Invalid");
-                    return;
-                }
-                if (TextUtils.isEmpty(line2)) {
-                    tvLine2.setError("Invalid");
-                    return;
-                }
-                if (TextUtils.isEmpty(city)) {
-                    tvCity.setError("Invalid");
-                    return;
-                }
-                if (TextUtils.isEmpty(state)) {
-                    tvState.setError("Invalid");
-                    return;
-                }
-                if (TextUtils.isEmpty(country)) {
-                    tvCountry.setError("Invalid");
-                    return;
-                }
-                if (TextUtils.isEmpty(about)) {
-                    tvAbout.setError("Invalid");
-                    return;
-                }
-                if (TextUtils.isEmpty(desc)) {
-                    tvDesc.setError("Invalid");
-                    return;
-                }
-                if (TextUtils.isEmpty(web)) {
-                    tvWeb.setError("Invalid");
-                    return;
-                }
-                if (TextUtils.isEmpty(email)) {
-                    tvEmail.setError("Invalid");
-                    return;
-                }
-
-                if (TextUtils.isEmpty(contact)) {
-                    tvContact.setError("Invalid");
-                    return;
-                }
-                if (TextUtils.isEmpty(logoURL)) {
-                    Toast.makeText(AddCompanyActivity.this, "Uploam compnay logo", Toast.LENGTH_LONG).show();
-                    return;
-                }
+//                if (TextUtils.isEmpty(companyName)) {
+//                    tvCompanyName.setError("Invalid");
+//                    return;
+//                }
+//
+//                if (TextUtils.isEmpty(location)) {
+//                    tvLocation.setError("Invalid");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(line1)) {
+//                    tvLine1.setError("Invalid");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(line2)) {
+//                    tvLine2.setError("Invalid");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(city)) {
+//                    tvCity.setError("Invalid");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(state)) {
+//                    tvState.setError("Invalid");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(country)) {
+//                    tvCountry.setError("Invalid");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(about)) {
+//                    tvAbout.setError("Invalid");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(desc)) {
+//                    tvDesc.setError("Invalid");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(web)) {
+//                    tvWeb.setError("Invalid");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(email)) {
+//                    tvEmail.setError("Invalid");
+//                    return;
+//                }
+//(TextUtils.isEmpty(logoURL)) {
+//                    Toast.makeText(AddCompanyActivity.this, "Uploam compnay logo", Toast.LENGTH_LONG).show();
+//                    return;
+//                }
                 Log.e("here", "here");
                 String id = firebaseFirestore.collection("mycompanies").document().getId();
 
                 Map<String, Object> order = new HashMap<>();
-                order.put("id", id);
+               // order.put("id", id);
                 order.put("name", companyName);
                 order.put("location", location);
                 order.put("line1", line1);
@@ -209,32 +206,58 @@ public class AddCompanyActivity extends AppCompatActivity {
                 order.put("desc", desc);
                 order.put("web", web);
                 order.put("email", email);
-                order.put("contact", contact);
                 order.put("userId", userId);
                 order.put("industry", spnIndustry.getSelectedItem().toString());
-                order.put("logo", logoURL);
+//                order.put("logo", logoURL);
 
 
-                firebaseFirestore.collection("mycompanies").document(id)
-                        .set(order)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
 
-                                Toast.makeText(AddCompanyActivity.this, "Company Added Successfully", Toast.LENGTH_SHORT).show();
 
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
+                firebaseFirestore.collection("mycompanies").add(order)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(AddCompanyActivity.this, "Data Added Successfully", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(AddCompanyActivity.this, "e.toString()", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
-                            }
-                        });
+
+
+//
+//                firebaseFirestore.collection("mycompanies")
+//                        .add(order)
+//
+//
+//
+//
+//
+//                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                            @Override
+//                            public void onSuccess(Void aVoid) {
+//
+//                                Toast.makeText(AddCompanyActivity.this, "Company Added Successfully", Toast.LENGTH_SHORT).show();
+//                                finish();
+//
+//                            }
+//                        })
+//                        .addOnFailureListener(new OnFailureListener() {
+//                            @Override
+//                            public void onFailure(@NonNull Exception e) {
+//
+//                            }
+//                        });
 
 
             }
         });
+
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

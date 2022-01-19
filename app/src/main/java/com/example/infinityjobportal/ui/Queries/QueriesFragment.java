@@ -52,13 +52,19 @@ public class QueriesFragment extends Fragment {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String editSubject=editsubject1.getText().toString();
+
+                final String editSubject=editsubject1.getText().toString();
                 String feedbackQuery= feedbackQuery1.getText().toString();
+
                 String userId=mAuth.getCurrentUser().getEmail();
                 CollectionReference reference = db.collection("Query");
 
-                Query Query = new Query(editSubject,feedbackQuery,userId);
-                reference.add(Query).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                Query query = new Query();
+                query.setEditSubject(editSubject);
+                query.setFeedbackQuery(feedbackQuery);
+                query.setUserid(userId);
+
+                reference.add(query).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -67,6 +73,8 @@ public class QueriesFragment extends Fragment {
                                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
 
+                                        editsubject1.setText("");
+                                        feedbackQuery1.setText("");
                                     }
                                 });
                         AlertDialog alert = builder.create();
